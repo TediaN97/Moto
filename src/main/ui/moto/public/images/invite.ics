@@ -1,0 +1,153 @@
+BEGIN:VCALENDAR
+METHOD:REQUEST
+PRODID:Microsoft Exchange Server 2010
+VERSION:2.0
+BEGIN:VTIMEZONE
+TZID:Central Europe Standard Time
+BEGIN:STANDARD
+DTSTART:16010101T030000
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+RRULE:FREQ=YEARLY;INTERVAL=1;BYDAY=-1SU;BYMONTH=10
+END:STANDARD
+BEGIN:DAYLIGHT
+DTSTART:16010101T020000
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+RRULE:FREQ=YEARLY;INTERVAL=1;BYDAY=-1SU;BYMONTH=3
+END:DAYLIGHT
+END:VTIMEZONE
+BEGIN:VEVENT
+ORGANIZER;CN=Ing. Ladislav Jůza:mailto:ladislav.juza@kdcsro.sk
+ATTENDEE;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;CN=mark-candi
+ date-56324927_372399_372399@profesia.sk:mailto:mark-candidate-56324927_372
+ 399_372399@profesia.sk
+ATTENDEE;ROLE=OPT-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE;CN=matus.saba
+ t@gmail.com:mailto:matus.sabat@gmail.com
+DESCRIPTION;LANGUAGE=sk-SK:Dobry den\,\n\nDnes o 10:30\n\nJuza\n___________
+ _____________________________________________________________________\nSch
+ ôdza cez Microsoft Teams\nPripojte sa pomocou počítača\, mobilnej apli
+ kácie alebo zariadenia v miestnosti\nKliknutím sem sa pripojíte k schô
+ dzi<https://teams.microsoft.com/l/meetup-join/19%3ameeting_NWIxZjQ0ZjQtN2J
+ hNS00NGU1LTg3ODYtMDYyNTc1ZWZmZGNk%40thread.v2/0?context=%7b%22Tid%22%3a%22
+ e63f54e2-e94c-485a-bc21-a732040ad960%22%2c%22Oid%22%3a%22fe59829f-4718-49a
+ e-b297-f927beb1fb42%22%7d>\nID schôdze: 339 173 770 611\nPrístupový kó
+ d: JTBSLA\nStiahnuť Teams<https://www.microsoft.com/en-us/microsoft-teams
+ /download-app> | Pripojenie na webe<https://www.microsoft.com/microsoft-te
+ ams/join-a-meeting>\nĎalšie informácie<https://aka.ms/JoinTeamsMeeting>
+  | Možnosti schôdze<https://teams.microsoft.com/meetingOptions/?organize
+ rId=fe59829f-4718-49ae-b297-f927beb1fb42&tenantId=e63f54e2-e94c-485a-bc21-
+ a732040ad960&threadId=19_meeting_NWIxZjQ0ZjQtN2JhNS00NGU1LTg3ODYtMDYyNTc1Z
+ WZmZGNk@thread.v2&messageId=0&language=sk-SK>\n___________________________
+ _____________________________________________________\n\n\n_______________
+ ______________________________\nFrom: Matúš Sabat\, Ing. / cez profesia.
+ sk <web@profesia.sk<mailto:web@profesia.sk>>\nSent: Monday\, May 22\, 2023
+  10:21 PM\nTo: Ing. Ladislav Jůza <ladislav.juza@kdcsro.sk<mailto:ladisla
+ v.juza@kdcsro.sk>>\nSubject: Re: KDC Junior Programator\n\nNová správa o
+ d hr@kdc.digital<mailto:hr@kdc.digital> ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
+ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
+ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
+ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
+ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
+ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌\n#level-start#\nNová správa od m
+ atus.sabat@gmail.com<mailto:matus.sabat@gmail.com> ‌ ‌ ‌ ‌ ‌ ‌
+  ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
+ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
+ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
+ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
+ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌\n#level-start#\nDobrý de
+ ň\,\n\náno\, môj záujem stále pretrváva o túto prácu. Ja som k dis
+ pozícii každý deň\, čiže ja sa kľudne zariadim. Hlavne tak\, aby V
+ ám to vyhovovalo\, ale skôr sa prikláňam k strede ak chcete v prvej po
+ lovici týždňa. Preferujem radšej online konverzáciu\, keďže mám ni
+ ečo vlastné rozpracované čo by som Vám mohol aj ukázať\, ak by ste 
+ mali záujem. Nie je to síce raketová veda\, ale aspoň niečo. :) Takti
+ ež\, aby som nezabudol ďakujem za prejavený záujem.\n\nS pozdravom\,\n
+ Ing. Matúš Sabat\n\npo 22. 5. 2023 o 15:08 KDC\, s.r.o. / cez profesia.s
+ k<http://tr.profesia.sk/lnk/EAAABCDElLAAAAAAAAAAAAJ_JigAAAAA7HUAAAAAAAj8PQ
+ Bka86a0KEUTrLBTHCeYXiytuMOLgAIUkc/1/cj3HtjQ3Ocw6kFEwfZGRnw/aHR0cHM6Ly9ldXI
+ wMi5zYWZlbGlua3MucHJvdGVjdGlvbi5vdXRsb29rLmNvbS8_dXJsPWh0dHAlM0ElMkYlMkZwc
+ m9mZXNpYS5zayUyRiZkYXRhPTA1JTdDMDElN0NtYXJrLWNhbmRpZGF0ZSU0MHByb2Zlc2lhLnN
+ rJTdDN2NjYjRlYzdhZDA4NDc1YTZiNzYwOGRiNWIwMTcxZDIlN0MwMTQwN2Y3OTk2YWI0NmNiY
+ jQwMGFlNjA2MmY0NDI5YSU3QzElN0MwJTdDNjM4MjAzODM0MDExNTE5MTE0JTdDVW5rbm93biU
+ 3Q1RXRnBiR1pzYjNkOGV5SldJam9pTUM0d0xqQXdNREFpTENKUUlqb2lWMmx1TXpJaUxDSkJUa
+ Uk2SWsxaGFXd2lMQ0pYVkNJNk1uMCUzRCU3QzMwMDAlN0MlN0MlN0Mmc2RhdGE9VnBIc1I5NFN
+ VUXRic2FHOWNhTjc4ZUtDUVklMkI3Vzc4bG1NQUZCbWpDajFZJTNEJnJlc2VydmVkPTAmdXRtX
+ 21lZGl1bT1tYWlsJnV0bV9jb250ZW50PW90aGVy> <web@profesia.sk<mailto:web@profe
+ sia.sk>> napísal(a):\nNová správa od hr@kdc.digital<mailto:hr@kdc.digit
+ al> ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
+ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
+ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
+ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
+ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ ‌ 
+ ‌\n#level-start#\n\nDobry den\,\n\nna zaklade informacii\, ktore ste nam
+  zaslali sme s kolegom vyhodnotili\, ze by sme s Vami radi spravili rozhov
+ or v prvej polovici tohoto tyzdna\, idealne v dopoludnajsich hodinach.\n\n
+ Ak Vas zaujem o pracu v nasej spolocnosti pretrvava tak by sme Vas chceli 
+ poziadat navrhnut niekolko terminov pre rozhovor\, skusime sa terminovo zl
+ adit. Predpokladana dlzka rozhovoru cca 40 min\, rozhovor sa moze uskutocn
+ it online\, alebo osobne v KDC podla Vasej preferencie.\n\nBest regards\,\
+ n\nIng. Ladislav Jůza Managing Director KDC\, s.r.o. Garbiarska 5\, 040 0
+ 1 Košice\, Slovakia\n\nwww.kdc.digital<http://tr.profesia.sk/lnk/EAAABCDE
+ lLAAAAAAAAAAAAJ_JigAAAAA7HUAAAAAAAj8PQBka86a0KEUTrLBTHCeYXiytuMOLgAIUkc/2/
+ Fy8nKAWxPXsKkXTxZUvguA/aHR0cHM6Ly9ldXIwMi5zYWZlbGlua3MucHJvdGVjdGlvbi5vdXR
+ sb29rLmNvbS8_dXJsPWh0dHAlM0ElMkYlMkZ0ci5wcm9mZXNpYS5zayUyRmxuayUyRkNBQUFCQ
+ 0JDMGRJQUFBQUFBQUFBQUw4N1lLUUFBQUFBN0hVQUFBQUFBQWo4UFFCa2EybEZZOEpoc0s5LVJ
+ DR0tiRHQ1cXp4T3dBQUlVa2MlMkYxJTJGbVYta3VIaWxVTUU5ekhBaGtfTkVSdyUyRmFIUjBjR
+ G92TDNkM2R5NXJaR011WkdsbmFYUmhiQzhfZFhSdFgyMWxaR2wxYlQxdFlXbHNKblYwYlY5amI
+ yNTBaVzUwUFc5MGFHVnkmZGF0YT0wNSU3QzAxJTdDbWFyay1jYW5kaWRhdGUlNDBwcm9mZXNpY
+ S5zayU3QzdjY2I0ZWM3YWQwODQ3NWE2Yjc2MDhkYjViMDE3MWQyJTdDMDE0MDdmNzk5NmFiNDZ
+ jYmI0MDBhZTYwNjJmNDQyOWElN0MxJTdDMCU3QzYzODIwMzgzNDAxMTUxOTExNCU3Q1Vua25vd
+ 24lN0NUV0ZwYkdac2IzZDhleUpXSWpvaU1DNHdMakF3TURBaUxDSlFJam9pVjJsdU16SWlMQ0p
+ CVGlJNklrMWhhV3dpTENKWFZDSTZNbjAlM0QlN0MzMDAwJTdDJTdDJTdDJnNkYXRhPUI1c2w0T
+ CUyRlpOU28zMXZRJTJCanpJekZZYmpKdFdweFAlMkYlMkIzMDRDeUxEb0xwYyUzRCZyZXNlcnZ
+ lZD0wJnV0bV9tZWRpdW09bWFpbCZ1dG1fY29udGVudD1vdGhlcg>\n#level-end#\n\n#leve
+ l-end##level-end#\n\n
+UID:040000008200E00074C5B7101A82E0080000000020DD3E24508DD901000000000000000
+ 010000000B2C666B46EA02345BBCDE66031FCF66D
+SUMMARY;LANGUAGE=sk-SK:KDC Junior Programator
+DTSTART;TZID=Central Europe Standard Time:20230523T103000
+DTEND;TZID=Central Europe Standard Time:20230523T111500
+CLASS:PUBLIC
+PRIORITY:5
+DTSTAMP:20230523T074157Z
+TRANSP:OPAQUE
+STATUS:CONFIRMED
+SEQUENCE:1
+LOCATION;LANGUAGE=sk-SK:Schôdza v aplikácii Microsoft Teams
+X-MICROSOFT-CDO-APPT-SEQUENCE:1
+X-MICROSOFT-CDO-OWNERAPPTID:660035559
+X-MICROSOFT-CDO-BUSYSTATUS:TENTATIVE
+X-MICROSOFT-CDO-INTENDEDSTATUS:BUSY
+X-MICROSOFT-CDO-ALLDAYEVENT:FALSE
+X-MICROSOFT-CDO-IMPORTANCE:1
+X-MICROSOFT-CDO-INSTTYPE:0
+X-MICROSOFT-ONLINEMEETINGINFORMATION:{"OnlineMeetingChannelId":null\,"Onlin
+ eMeetingProvider":3}
+X-MICROSOFT-SKYPETEAMSMEETINGURL:https://teams.microsoft.com/l/meetup-join/
+ 19%3ameeting_NWIxZjQ0ZjQtN2JhNS00NGU1LTg3ODYtMDYyNTc1ZWZmZGNk%40thread.v2/
+ 0?context=%7b%22Tid%22%3a%22e63f54e2-e94c-485a-bc21-a732040ad960%22%2c%22O
+ id%22%3a%22fe59829f-4718-49ae-b297-f927beb1fb42%22%7d
+X-MICROSOFT-SCHEDULINGSERVICEUPDATEURL:https://api.scheduler.teams.microsof
+ t.com/teams/e63f54e2-e94c-485a-bc21-a732040ad960/fe59829f-4718-49ae-b297-f
+ 927beb1fb42/19_meeting_NWIxZjQ0ZjQtN2JhNS00NGU1LTg3ODYtMDYyNTc1ZWZmZGNk@th
+ read.v2/0
+X-MICROSOFT-SKYPETEAMSPROPERTIES:{"cid":"19:meeting_NWIxZjQ0ZjQtN2JhNS00NGU
+ 1LTg3ODYtMDYyNTc1ZWZmZGNk@thread.v2"\,"private":true\,"type":0\,"mid":0\,"
+ rid":0\,"uid":null}
+X-MICROSOFT-ONLINEMEETINGCONFLINK:conf:sip:ladislav.juza@kdcsro.sk\;gruu\;o
+ paque=app:conf:focus:id:teams:2:0!19:meeting_NWIxZjQ0ZjQtN2JhNS00NGU1LTg3O
+ DYtMDYyNTc1ZWZmZGNk-thread.v2!fe59829f471849aeb297f927beb1fb42!e63f54e2e94
+ c485abc21a732040ad960
+X-MICROSOFT-DONOTFORWARDMEETING:FALSE
+X-MICROSOFT-DISALLOW-COUNTER:FALSE
+X-MICROSOFT-LOCATIONS:[ { "DisplayName" : "Schôdza v aplikácii Microsoft 
+ Teams"\, "LocationAnnotation" : ""\, "LocationSource" : 0\, "Unresolved" :
+  false\, "LocationUri" : "" } ]
+BEGIN:VALARM
+DESCRIPTION:REMINDER
+TRIGGER;RELATED=START:-PT15M
+ACTION:DISPLAY
+END:VALARM
+END:VEVENT
+END:VCALENDAR

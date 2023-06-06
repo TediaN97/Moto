@@ -1,0 +1,69 @@
+package com.motowiki.moto.controllers;
+
+import com.github.fge.jsonpatch.JsonPatch;
+import com.motowiki.moto.models.CarModel;
+import com.motowiki.moto.entities.Car;
+import com.motowiki.moto.services.CarService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.concurrent.CompletableFuture;
+
+@RestController
+@RequestMapping("/car")
+public class CarController {
+    private final CarService service;
+
+    public CarController(CarService service) {
+        this.service = service;
+    }
+
+    @PostMapping("/create")
+    public ResponseEntity<Car> createProduct(@RequestBody CarModel car) throws Exception {
+        return new ResponseEntity<>(service.create(car), HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Car> getOneProduct(@PathVariable("id") int id) {
+        return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<List<Car>> getAllProducts() {
+        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+    }
+
+    @PutMapping("/update/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public CompletableFuture<Car> updateOneProduct(@PathVariable("id") long id, @RequestBody CarModel car) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                service.updateOne(id, car);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+            return service.findById(id);
+        });
+    }
+
+    @PatchMapping(value = "/patch/{id}", consumes = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Car> patchOneProduct(@PathVariable("id") int id, @RequestBody JsonPatch patch) {
+        return new ResponseEntity<>(service.patchOne(id, patch),HttpStatus.OK);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteOneProduct(@PathVariable("id") int id) {
+        service.deleteById(id);
+    }
+
+    @DeleteMapping("/delete/all")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAllProducts() {
+        service.deleteAll();
+    }
+
+}
