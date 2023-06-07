@@ -16,9 +16,8 @@ const Header = (props: HeaderProps) => {
 
   return (
     <header className="max h-30 w-full rounded-bl-3xl rounded-br-3xl">
-        <div className="text-dark-purple text-center font-rowdies justify-between tracking-wider pt-10 pb-10 pr-9 pl-7 flex">
+        <div className="text-purple-900 text-center font-rowdies font-semibold justify-center tracking-wider pt-10 pb-10 pr-9 pl-7 flex">
             <p className="text-4xl">{props.name}</p>
-            <FontAwesomeIcon className="text-2xl mt-2" icon={faBars} onClick={handleClick}/>
         </div>
     </header>
   );

@@ -1,4 +1,5 @@
 import React, { MouseEvent, useState, TouchEvent, useRef }from 'react';
+import FilteredButton from './FilteredButton';
 
 interface FilterProps {
     data: any;
@@ -17,7 +18,9 @@ const Filter: React.FC<FilterProps> = ({ data, onChangeCountry }) => {
   const [prevPageX, setPrevPageX] = useState<number>(0);
   const [prevScrollLeft, setPrevScrollLeft] = useState<number>(0);
   const [name, setName ] = useState('');
-  let [clickedTwice, setClickedTwice] = useState(false);
+  const [clickedTwice, setClickedTwice] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+  const [carId, setCarId] = useState<number | null>(null);
 
   //global variables
   let value: number = 0;
@@ -53,9 +56,11 @@ const Filter: React.FC<FilterProps> = ({ data, onChangeCountry }) => {
         }
 
 
-  const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: MouseEvent<HTMLButtonElement>, key:number) => {
+       setCarId(key);
        if(name === (event.target as HTMLButtonElement).name){
           if(!clickedTwice){
+            setCarId(null);
             onChangeCountry("");
             setClickedTwice(true);
           } else {
@@ -69,22 +74,15 @@ const Filter: React.FC<FilterProps> = ({ data, onChangeCountry }) => {
         }
   }
 
-  const unique = [...(new Set(data.map((car: any) => car.country)) as any)];
+  const unique = [...(new Set(data.map((car: any) => car.country )) as any)];
 
   return (
         <div ref={carouselRef} className="w-full text-sm cursor-pointer overflow-hidden flex scroll-smooth items-center" onTouchMove={draggingTouch} onTouchStart={dragTouchStart} onTouchEnd={dragStop}>
-            {unique.filter((car:any) => car.length ).map((car: any) => {
+            {unique.filter((car:any) => car.length ).map((car: any, index: number) => {
                     return (
-                    <button
-                        key={counter++}
-                        name={car}
-                        className="whitespace-nowrap font-rowdies p-4 mr-4 text-md rounded-3xl font-light shadow-md bg-light-purple text-dark-purple "
-                        onClick={handleClick}
-                    >
-                            {car}
-                    </button> )}
-                )
-            }
+                        <FilteredButton key={index} onClick={(event) => handleClick(event, index)} isActive={carId === index} name={car} />
+                    )
+            })}
         </div>
    )
 }

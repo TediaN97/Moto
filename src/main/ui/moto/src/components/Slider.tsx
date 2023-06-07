@@ -1,8 +1,10 @@
 import React, { useRef, useState, MouseEvent, TouchEvent } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAngleLeft,faAngleRight } from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft,faAngleRight, faPlus } from '@fortawesome/free-solid-svg-icons';
 import Image from './Image';
+import { useNavigate } from 'react-router-dom';
+
 
 interface SliderProps {
     data: any;
@@ -16,6 +18,8 @@ const Slider: React.FC<SliderProps> = ({ data, searchValue, filteredCountry }) =
   const carouselRef = useRef<HTMLDivElement>(null);
   const leftArrowIconRef = useRef<SVGSVGElement>(null);
   const rightArrowIconRef = useRef<SVGSVGElement>(null);
+
+  const navigate = useNavigate();
 
   //hooks
   const [isDragStart, setIsDragStart] = useState(false);
@@ -105,16 +109,23 @@ const Slider: React.FC<SliderProps> = ({ data, searchValue, filteredCountry }) =
         }
     }
 
+    const handleAddClick = () => {
+        navigate('/car/carForm');
+    }
+
   return (
     <div className="min-w-sm cursor-pointer ml-7 mt-2">
-        <p className="text-xl font-light" >Brands</p>
-            <div ref={carouselRef} className="mt-5 text-sm cursor-pointer overflow-hidden flex scroll-smooth" onMouseMove={dragging} onMouseDown={dragStart} onMouseUp={dragStop} onMouseLeave={dragStop} onTouchMove={draggingTouch} onTouchStart={dragTouchStart} onTouchEnd={dragStop}>
-                  {data.filter((car: any) => {
-                        if((car.brand.toLowerCase().includes(searchValue) || car.brand.toLowerCase().includes("carform")) && car.country.includes(filteredCountry)){
-                            return car
-                         }}).map((car: any) => <Image key={car.id} brand={car.brand} imageData={car.logo} />)}
-           </div>
-        </div>
+        <div className="flex justify-between items-center">
+            <p className="text-xl font-light" >Brands</p>
+            <FontAwesomeIcon icon={faPlus} className="mr-10 text-purple-900" onClick={handleAddClick} />
+       </div>
+       <div ref={carouselRef} className="mt-5 text-sm cursor-pointer overflow-hidden flex scroll-smooth " onMouseMove={dragging} onMouseDown={dragStart} onMouseUp={dragStop} onMouseLeave={dragStop} onTouchMove={draggingTouch} onTouchStart={dragTouchStart} onTouchEnd={dragStop}>
+              {data.filter((car: any) => {
+                    if((car.brand.toLowerCase().includes(searchValue) || car.brand.toLowerCase().includes("carform")) && car.country.includes(filteredCountry)){
+                        return car
+                     }}).map((car: any) => <Image key={car.id} brand={car.brand} imageData={car.logo} />)}
+       </div>
+    </div>
   );
 }
 

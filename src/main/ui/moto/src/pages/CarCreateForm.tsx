@@ -18,7 +18,7 @@ function CarCreateForm(){
   }
 
   return (
-    <div className="m-0 p-0 box-border flex flex-col min-h-screen">
+    <div className="m-0 p-0 box-border flex flex-col min-h-screen bg-green-100">
         <Header name="CAR FORM" />
         <div className="flex ">
             <p onClick={handleHomeClick} className="mt-6 ml-10 text-lg font-rowdies font-light">Home </p>
