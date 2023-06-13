@@ -18,7 +18,7 @@ const ImageComponent = (props: ImageProps) => {
   return (
         <img
             onClick={handleClick}
-            className="h-1/3 w-11/12 object-fill rounded-3xl sm:w-1/2 lg:w-1/3 2xl:w-1/4 2xl:hover:scale-110 2xl:border-blue-500 border-2 2xl:w-96 mr-4"
+            className="h-96 w-10/12 object-fill rounded-3xl sm:w-1/2 lg:w-1/3 2xl:w-1/4 lg:hover:scale-110 lg:border-purple-900 border-2 2xl:w-96 mr-4"
             src={`data:image/png;base64,${props.imageData}`}
             alt="logo"
             draggable="false"

@@ -26,9 +26,10 @@ let Footer = () => {
   }
 
   return (
-    <footer className="max h-16 w-full m-auto flex justify-center items-center">
+    <footer className="max h-16 w-full m-auto flex justify-center items-center lg:mt-64">
         <div className="w-80">
-            <ul className="flex justify-between">
+            <span className="hidden lg:flex text-sm ml-8">Created by Ing.Matúš Sabat © 2023</span>
+            <ul className="flex justify-between lg:hidden">
                 <Li key={1} name={
                     <svg className={`fill-current ${activeButtonId === 1 ? "text-white" : "text-purple-900"}`} width="18" height="18" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                            <path

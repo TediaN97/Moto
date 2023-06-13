@@ -20,13 +20,13 @@ const Home: React.FC<HomeProps> = ({data}) => {
   const [searchValue, setSearchValue] = useState('');
   const [isClicked, setIsClicked] = useState(false);
   const [filteredCountry, setFilteredCountry] = useState('');
-  const [bgColor, setBgColor] = useState("white");
-  const [textColor, setTextColor] = useState("text-purple-900");
+  const [bgColor, setBgColor] = useState("white hover:bg-purple-100");
+  const [textColor, setTextColor] = useState("text-purple-600");
 
   const handleClick = async () => {
       await setIsClicked(!isClicked);
-      !isClicked ? setBgColor("green-400") : setBgColor("white");
-      !isClicked ? setTextColor("text-white") : setTextColor("text-purple-900");
+      !isClicked ? setBgColor("purple-800") : setBgColor("white hover:bg-purple-100");
+      !isClicked ? setTextColor("text-white") : setTextColor("text-purple-600");
       if(isClicked){
         setFilteredCountry("");
       }
@@ -42,9 +42,9 @@ const Home: React.FC<HomeProps> = ({data}) => {
   }
 
   return (
-    <div className="m-0 p-0 box-border flex flex-col min-h-screen font-rowdies font-light text-dark-purple bg-green-100 bg-opacity-30 text-purple-900">
+    <div className="m-0 p-0 box-border flex flex-col min-h-screen font-rowdies font-light bg-purple-100 bg-opacity-30 text-purple-600">
         <Header name="MOTOWIKI"/>
-        <div className="flex justify-between">
+        <div className="mt-5 ml-5 flex justify-evenly md:ml-0 lg:justify-end">
                 <p onClick={handleClick} className="mt-6 ml-10 text-lg font-rowdies font-light hidden">Home</p>
                 <Search value={textValue} onTextChange={handleTextChange} />
                 <Button backgroundColor={bgColor} name={<svg className={`fill-current ${textColor}`}

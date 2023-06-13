@@ -11,7 +11,7 @@ const FilteredButton: React.FC<FilteredButtonProps> = ({ onClick, name, isActive
   return (
     <button
        name={name}
-       className={`whitespace-nowrap font-rowdies p-4 mr-4 text-md rounded-3xl font-light shadow-sm ${isActive ? "border-green-400 border-2 bg-green-400 bg-opacity-20 text-green-500" : "bg-white"}`}
+       className={`whitespace-nowrap font-rowdies p-4 mr-4 text-md rounded-3xl font-light shadow-sm ${isActive ? "border-purple-900 border-2 bg-purple-400 bg-opacity-20 text-purple-600" : "bg-white"}`}
        onClick={onClick}
     >
         {name}
