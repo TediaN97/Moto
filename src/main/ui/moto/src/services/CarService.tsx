@@ -19,3 +19,17 @@ export async function createCar(data: CarData) {
       })
       return await response.json();
 }
+
+export async function deleteCar(id: number){
+   try {
+       await fetch(`/car/delete/${id}`, {
+         method: "DELETE",
+         headers: {
+           "Content-Type": "application/json",
+         },
+       });
+     } catch (error) {
+        console.error("Error deleting car:", error);
+       throw error;
+     }
+}

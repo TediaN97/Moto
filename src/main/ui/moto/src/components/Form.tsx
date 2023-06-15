@@ -6,7 +6,11 @@ import InputSelect from './inputs/InputSelect';
 import { createCar, CarData } from '../services/CarService'
 import { useNavigate } from 'react-router-dom';
 
-const Form = () => {
+interface FormProps {
+    onSelectedImage: (value: boolean) => void;
+}
+
+const Form = ( props: FormProps ) => {
 
   //navigate
   const navigate = useNavigate();
@@ -30,6 +34,7 @@ const Form = () => {
         const reader = new FileReader();
         reader.onload = () => {
           setSelectedImage(reader.result as string);
+          props.onSelectedImage(true);
           setFileValue(reader.result?.toString()?.split(",")[1]);
         };
         reader.readAsDataURL(file);
@@ -50,6 +55,7 @@ const Form = () => {
             setNumberValue('');
             setTextValue('');
             setSelectedValue('');
+            props.onSelectedImage(false);
         }
     }
 
@@ -81,23 +87,23 @@ const Form = () => {
    }
 
   return (
-    <div className="max-w-xl bg-blue-300 bg-opacity-30 rounded-tl-full rounded-tr-full p-10 text-blue-500 ">
+    <div className="max w-screen bg-purple-300 bg-opacity-20 rounded-tl-full rounded-tr-full p-10 text-purple-600 mt-10 md:max-w-max">
         <InputText name="Brand:" value={textValue} onTextChange={handleTextChange} />
         <InputSelect name="Country:" value={selectedValue} onSelectChange={handleSelectChange} />
         <InputNumber name="Year:" value={numberValue} onNumberChange={handleNumberChange} />
         <input ref={fileInputRef} className="hidden" type="file" onChange={handleImageChange} accept="image/png, image/gif, image/jpeg" />
         {selectedImage ? (
             <div>
-                <div className="mt-5 text-4xl font-sans justify-between flex ">
+                <div className="mt-5 text-2xl lg:text-4xl justify-between flex ">
                         <p className="font-rowdies">Logo:</p>
-                        <img className="mt-5 w-1/3" src={selectedImage} alt="Preview" />
+                        <img className="w-1/3" src={selectedImage} alt="Preview" />
                 </div>
                 <div className="mt-20 text-2xl flex items-center justify-center">
-                    <Button name="Reset" onClick={handleResetClick}/>
-                    <Button name="Save" onClick={handleSaveClick}/>
+                    <Button name="Reset" width="w-40" backgroundColor={"bg-purple-600"} hoverBackgroundColor={"bg-purple-900"} onClick={handleResetClick}/>
+                    <Button name="Save" width="w-40" backgroundColor={"bg-purple-600"} hoverBackgroundColor={"bg-purple-900"} onClick={handleSaveClick}/>
                 </div>
             </div>
-         ) : (<div className="mt-10 justify-center flex"><Button name="Select logo" onClick={handleClick}/></div>)}
+         ) : (<div className="mt-10 justify-center flex"><Button name="Select logo" width="w-40" backgroundColor={"bg-purple-600"} hoverBackgroundColor={"bg-purple-900"} onClick={handleClick} /></div>)}
     </div>
   );
 }

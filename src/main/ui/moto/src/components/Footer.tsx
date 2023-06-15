@@ -6,13 +6,17 @@ import { faCodeCompare } from '@fortawesome/free-solid-svg-icons';
 
 import { useNavigate } from 'react-router-dom';
 
-let Footer = () => {
+interface FooterProps {
+    isSelected?: boolean;
+    homeIsNotActive?: boolean;
+}
+
+const Footer: React.FC<FooterProps> = ({ isSelected, homeIsNotActive }) => {
 
   const navigate = useNavigate();
-
   const [textColor, setTextColor] = useState("text-purple-900");
   const [backgroundColor, setBackgroundColor] = useState("white");
-  const [activeButtonId, setActiveButtonId] = useState(1);
+  const [activeButtonId, setActiveButtonId] = useState(homeIsNotActive ? 0 : 1);
 
   const handleClick = (key:number) => {
     setActiveButtonId(key);
@@ -26,9 +30,9 @@ let Footer = () => {
   }
 
   return (
-    <footer className="max h-16 w-full m-auto flex justify-center items-center lg:mt-64">
+    <footer className={`${isSelected ? "md:hidden" : "flex"} static max h-16 w-full mt-36 flex justify-center items-center `}>
         <div className="w-80">
-            <span className="hidden lg:flex text-sm ml-8">Created by Ing.Matúš Sabat © 2023</span>
+            <span className="hidden lg:flex text-sm ml-8">Created by <a href="https://www.linkedin.com/in/mat%C3%BA%C5%A1-sabat-571002118/">Ing.Matúš Sabat</a> © 2023</span>
             <ul className="flex justify-between lg:hidden">
                 <Li key={1} name={
                     <svg className={`fill-current ${activeButtonId === 1 ? "text-white" : "text-purple-900"}`} width="18" height="18" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">

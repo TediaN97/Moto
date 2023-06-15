@@ -14,10 +14,10 @@ const InputText: React.FC<InputProps> = ({name, value, onTextChange}) => {
   }
 
   return (
-    <div className="mt-5 text-4xl font-sans items-center justify-between flex">
+    <div className="mt-5 text-2xl lg:text-4xl font-sans items-center justify-between flex">
         <p className="font-rowdies">{name}</p>
         <input
-            className="font-rowdies font-light text-black border-blue-500 border-4 rounded-2xl focus:ring  focus:outline-none focus:border-blue-500 w-3/5"
+            className="font-rowdies font-light text-black border-purple-900 border-4 rounded-2xl focus:outline-none w-1/2"
             maxLength={50}
             value={value}
             onChange={handleChange}

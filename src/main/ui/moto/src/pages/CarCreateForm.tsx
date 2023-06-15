@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Form from '../components/Form';
@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 
 function CarCreateForm(){
 
+  const [isSelected, setIsSelected] = useState(false);
   const navigate = useNavigate();
 
   const handleHomeClick = () => {
@@ -17,18 +18,25 @@ function CarCreateForm(){
         navigate('/car/carForm');
   }
 
+  const handleSelectedImage = (value: boolean) => {
+       setIsSelected(value);
+  }
+
+ //changeNameTitle
+ useEffect(() => {
+     const titleElement = document.querySelector('title');
+         if (titleElement) {
+           titleElement.innerHTML = 'Car From';
+         }
+   }, []);
+
   return (
-    <div className="m-0 p-0 box-border flex flex-col min-h-screen bg-green-100">
-        <Header name="CAR FORM" />
-        <div className="flex ">
-            <p onClick={handleHomeClick} className="mt-6 ml-10 text-lg font-rowdies font-light">Home </p>
-            <p className="mt-6 ml-2 text-lg font-rowdies font-light">{"->"}</p>
-            <p onClick={handleFormClick} className="mt-6 ml-2 text-lg font-rowdies font-light">Car_form</p>
+    <div className="h-screen w-screen m-0 p-0 box-border flex flex-col font-rowdies font-light bg-purple-100 bg-opacity-30 text-purple-600">
+        <Header name="MOTOWIKI" />
+        <span className="text-2xl ml-5 lg:ml-16 mt-10 font-semibold">Car Form</span>
+        <div className="flex-grow items-center justify-center ml-auto mr-auto">
+            <Form onSelectedImage={handleSelectedImage} />
         </div>
-        <div className="flex-grow items-center justify-center mt-10 m-auto">
-            <Form />
-        </div>
-        <Footer/>
     </div>
   );
 }

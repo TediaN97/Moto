@@ -56,8 +56,9 @@ public class CarController {
 
     @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteOneProduct(@PathVariable("id") int id) {
+    public ResponseEntity<String> deleteOneProduct(@PathVariable("id") int id) {
         service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/delete/all")

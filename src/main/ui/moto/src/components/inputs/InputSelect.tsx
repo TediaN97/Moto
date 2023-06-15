@@ -15,7 +15,7 @@ const InputSelect: React.FC<SelectProps> = ({name, value, onSelectChange}) => {
   }
 
   return (
-    <div className="mt-5 text-4xl items-center justify-between flex">
+    <div className="mt-5 text-2xl lg:text-4xl items-center justify-between flex">
         <p className="font-rowdies">{name}</p>
         <Select value={value} onSelectChange={handleChange} />
     </div>

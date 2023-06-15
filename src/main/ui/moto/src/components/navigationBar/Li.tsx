@@ -14,7 +14,7 @@ interface LiProps {
 const Li = (props: LiProps) => {
 
   return (
-    <li className={`${props.isActive ? "bg-purple-800 shadow-purple-800" : "bg-white"} shadow-lg ml-3 items-center flex p-2 justify-center w-20 whitespace-wrap rounded-3xl cursor-pointer`} onClick={props.onClick}>
+    <li className={`${props.isActive ? "bg-purple-800 shadow-purple-800" : "bg-white"} transition-colors shadow-lg ml-3 items-center flex p-2 justify-center w-20 whitespace-wrap rounded-3xl cursor-pointer`} onClick={props.onClick}>
           {
           props.name
           }

@@ -7,8 +7,15 @@ interface Props{
 
 const Select: React.FC<Props> = ({onSelectChange, value}) => {
 
+    const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      onSelectChange(event);
+    };
+
   return (
-    <select value={value} onChange={onSelectChange} className="font-rowdies font-light border-blue-500 text-black border-4 rounded-2xl focus:ring  focus:outline-none focus:border-blue-500">
+    <select
+        value={value}
+        onChange={handleChange}
+        className={`w-1/2 font-rowdies font-light border-purple-900 text-black overflow-scroll border-4 rounded-2xl focus:outline-none focus:border-purple-900`}>
         <option value=""></option>
         <option value="Australia">Australia</option>
         <option value="Brazil">Brazil</option>

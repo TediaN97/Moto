@@ -12,22 +12,16 @@ function DataProvider(){
           if(!isCancelled) {
             const sortedData = data.sort((a: any, b: any) => a.brand.localeCompare(b.brand));
 
-            const formCarIndex = sortedData.findIndex((car: any) => car.brand === "carForm");
-            if( formCarIndex > -1 ) {
-                const movedObj = sortedData.splice(formCarIndex, 1)[0];
-                sortedData.push(movedObj);
-            }
-
             setCars(sortedData);
           }
         });
         return () => {
             isCancelled = true;
         }
-  }, []);
+  }, [cars]);
 
   return (
-        <Home data={cars} />
+        <Home data={cars}/>
        );
 }
 
