@@ -30,7 +30,7 @@ function Modal(props: ModalProps) {
     <div>
       <FontAwesomeIcon
            icon={faTrash}
-           className="absolute top-3 right-3 text-2xl text-purple-800 cursor-pointer bg-white p-2 rounded-xl"
+           className="absolute top-3 right-3 text-2xl text-purple-800 cursor-pointer bg-white p-2 rounded-xl hover:bg-purple-100"
            onClick={openModal}
          />
       {isOpen && (
@@ -46,7 +46,7 @@ function Modal(props: ModalProps) {
                 <Button
                   name={"Delete"}
                   backgroundColor={"bg-red-500"}
-                  hoverBackgroundColor={"bg-red-800"}
+                  hoverBackgroundColor={"hover:bg-red-900"}
                   onClick={() => handleDeleteClick(props.id)}
                 />
             </div>

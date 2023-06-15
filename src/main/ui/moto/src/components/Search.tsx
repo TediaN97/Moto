@@ -26,6 +26,7 @@ const Search: React.FC<SearchProps> = ({ value, onTextChange }) => {
                     id="search"
                     placeholder="Search brand.."
                     onChange={handleChange}
+                    maxLength={15}
                 />
             </div>
      );

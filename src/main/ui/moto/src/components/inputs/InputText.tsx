@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 
 interface InputProps {
     name: String;
@@ -7,6 +7,7 @@ interface InputProps {
 }
 
 const InputText: React.FC<InputProps> = ({name, value, onTextChange}) => {
+
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;

@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import Select from './Select';
 
 interface SelectProps {
@@ -8,6 +8,8 @@ interface SelectProps {
 }
 
 const InputSelect: React.FC<SelectProps> = ({name, value, onSelectChange}) => {
+
+  const [inputValue, setInputValue ] = useState('');
 
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const inputValue = event.target.value;

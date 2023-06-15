@@ -57,11 +57,16 @@ public class CarService {
         if (repository.findById(id).isEmpty()) throw new EntityNotFoundException();
         List<Car> listOfCars = findAll();
         for(Car checkCar : listOfCars){
-            if(Objects.equals(car.getBrand(), checkCar.getBrand())){
+            System.out.println("checkCar" + checkCar);
+            System.out.println("id" + id);
+            if(Objects.equals(car.getBrand(), checkCar.getBrand()) && checkCar.getId() != id){
                 throw new Exception("Car with this brand is already in a table");
             }
         }
-        repository.updateById(car.getBrand(), car.getCountry(), car.getStart_from(), id);
+
+        byte[] logoBytes = Base64.getDecoder().decode(car.getLogo());
+
+        repository.updateById(car.getBrand(), car.getCountry(), car.getStart_from(), logoBytes, id);
     }
 
     public Car patchOne(long id, JsonPatch patch) {

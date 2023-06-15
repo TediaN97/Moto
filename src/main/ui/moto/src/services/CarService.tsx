@@ -33,3 +33,19 @@ export async function deleteCar(id: number){
        throw error;
      }
 }
+
+export async function updateCar(id: number, data: CarData){
+   try {
+
+       await fetch(`/car/update/${id}`, {
+         method: "PUT",
+         headers: {
+           "Content-Type": "application/json",
+         },
+         body: JSON.stringify(data)
+       });
+     } catch (error) {
+        console.error("Error updating car:", error);
+       throw error;
+     }
+}

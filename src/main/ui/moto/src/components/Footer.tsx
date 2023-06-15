@@ -30,7 +30,7 @@ const Footer: React.FC<FooterProps> = ({ isSelected, homeIsNotActive }) => {
   }
 
   return (
-    <footer className={`${isSelected ? "md:hidden" : "flex"} static max h-16 w-full mt-36 flex justify-center items-center `}>
+    <footer className={`static max h-16 mt-10 w-full flex justify-center items-center `}>
         <div className="w-80">
             <span className="hidden lg:flex text-sm ml-8">Created by <a href="https://www.linkedin.com/in/mat%C3%BA%C5%A1-sabat-571002118/">Ing.Matúš Sabat</a> © 2023</span>
             <ul className="flex justify-between lg:hidden">

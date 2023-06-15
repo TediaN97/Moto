@@ -19,7 +19,7 @@ const ImageComponent = (props: ImageProps) => {
   return (
         <img
             onClick={handleClick}
-            className={`${props.isClickedEdit ? "border-2 rounded-3xl border-purple-900 shadow-lg h-96 block w-full h-auto" : "h-96 w-10/12 object-fill rounded-3xl sm:w-1/2 lg:w-1/4 2xl:w-1/4 lg:hover:w-1/4 lg:hover:h-1/4  lg:border-purple-900 border-2 2xl:w-96 mr-4"}`}
+            className={`${props.isClickedEdit ? "border-2 rounded-3xl border-purple-900 shadow-lg h-80 w-full " : "border-2 border-solid border-purple-900 border-solid h-80 w-80 object-fill rounded-3xl lg:w-80 lg:hover:h-96 lg:hover:w-96 mr-3 lg:mr-9 xl:mr-8"}`}
             src={`data:image/png;base64,${props.imageData}`}
             alt="logo"
             draggable="false"

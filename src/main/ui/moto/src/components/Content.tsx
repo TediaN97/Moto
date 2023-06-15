@@ -35,17 +35,19 @@ const Content: React.FC<ContentProps> = ({ data, searchValue, filteredCountry })
     }
 
   return (
-    <div className="min-w-sm lg:h-1/2 cursor-pointer mt-2">
-        <div className="ml-7 flex justify-between items-center">
+    <div>
+        <div className="ml-7 mt-10 flex justify-between items-center">
             <p className="text-xl font-bold" >Brands</p>
-            <div className="flex">
+            <div className="flex ">
                 <Button name="Add brand" onClick={handleAddClick} isResponsiveButton={true} />
                 {isClickedEdit ? <Button name={<FontAwesomeIcon className="text-2xl" icon={faCircleXmark} />} shadowColor={"purple-800"} backgroundColor={"bg-purple-800"} onClick={toggleEditButton} isResponsiveButton={true} /> : <Button name="Edit" onClick={toggleEditButton} isResponsiveButton={true} />}
                 <Dropdown onChangeEdit={handleChangeEdit} />
             </div>
        </div>
-       <Grid isClickedEdit={isClickedEdit} data={data} filteredCountry={filteredCountry} searchValue={searchValue} />
-       <Slider isClickedEdit={isClickedEdit} data={data} filteredCountry={filteredCountry} searchValue={searchValue}/>
+        <div className="min-w-sm cursor-pointer">
+           <Grid isClickedEdit={isClickedEdit} data={data} filteredCountry={filteredCountry} searchValue={searchValue} />
+           <Slider isClickedEdit={isClickedEdit} data={data} filteredCountry={filteredCountry} searchValue={searchValue}/>
+        </div>
     </div>
   );
 }

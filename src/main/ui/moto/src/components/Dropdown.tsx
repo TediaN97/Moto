@@ -58,7 +58,7 @@ const Dropdown = (props: DropdownProps) => {
         <div className="mr-2" ref={dropdownRef}>
             <Button name={<FontAwesomeIcon className={textColor} icon={faEllipsisVertical} />} backgroundColor={bgColor} shadowColor={shadowColor} onClick={handleOpenWindow} hidden={true} />
             {isOpen && (
-                <div className="absolute right-5 top-72 w-32 p-4 rounded-xl bg-white border border-solid border-purple-900 z-20">
+                <div className="absolute right-5 top-80 w-32 p-4 rounded-xl bg-white border border-solid border-purple-900 z-20">
                     <ul className="flex flex-col gap-4">
                        <li className="hover:bg-purple-100" onClick={() => navigate('/car/carForm')}>Add Brand</li>
                        {clickedEdit ? <li className="hover:bg-purple-100" onClick={handleClickEdit}>Edit</li> : <li className="bg-purple-800 text-white" onClick={handleClickEdit}>Stop editing</li>}

@@ -97,11 +97,11 @@ const Slider = (props: SliderProps) => {
           if(carouselRef.current !== null) {
               const firstImg = carouselRef.current?.children[0] as SVGSVGElement;
               if(firstImg !== null){
+//                   const clickedIcon = event.currentTarget;
+//                   const firstImgWidth: number = firstImg.clientWidth + 70;
                   const clickedIcon = event.currentTarget;
-                  const firstImgWidth: number = firstImg.clientWidth + 20;
-  //                 const clickedIcon = event.currentTarget;
-  //                 const containerWidth = carouselRef.current.offsetWidth;
-                  carouselRef.current.scrollLeft += clickedIcon.dataset.icon === 'angle-left' ? - firstImgWidth : firstImgWidth;
+                  const containerWidth = carouselRef.current.offsetWidth;
+                  carouselRef.current.scrollLeft += clickedIcon.dataset.icon === 'angle-left' ? - containerWidth : containerWidth;
                    setTimeout(() => { showHideIcons(); }, 60);
               }
           }
@@ -111,7 +111,7 @@ const Slider = (props: SliderProps) => {
         <div>
        {!props.isClickedEdit  &&  (
            <div className="ml-7 h-80">
-               <div className="lg:fixed lg:top-1/2 lg:mt-12 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 lg:w-10/12">
+               <div className="lg:fixed lg:top-1/2 lg:mt-10 lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 lg:w-10/12 xl:w-11/12">
                           <div ref={carouselRef} className="relative mt-5 text-sm cursor-pointer overflow-hidden flex items-center scroll-smooth" onMouseMove={dragging} onMouseDown={dragStart} onMouseUp={dragStop} onMouseLeave={dragStop} onTouchMove={draggingTouch} onTouchStart={dragTouchStart} onTouchEnd={dragStop}>
                                  {props.data.filter((car: any) => {
                                        if(car.brand.toLowerCase().includes(props.searchValue) && car.country.includes(props.filteredCountry)){

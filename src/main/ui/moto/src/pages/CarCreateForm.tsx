@@ -2,13 +2,21 @@ import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Form from '../components/Form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 
 function CarCreateForm(){
 
   const [isSelected, setIsSelected] = useState(false);
+
   const navigate = useNavigate();
+  const location = useLocation();
+  let car = {};
+
+  if(location.state){
+     car = location.state;
+  }
+
 
   const handleHomeClick = () => {
         navigate('/');
@@ -35,7 +43,7 @@ function CarCreateForm(){
         <Header name="MOTOWIKI" />
         <span className="text-2xl ml-5 lg:ml-16 mt-10 font-semibold">Car Form</span>
         <div className="flex-grow items-center justify-center ml-auto mr-auto">
-            <Form onSelectedImage={handleSelectedImage} />
+            <Form onSelectedImage={handleSelectedImage} car={car} />
         </div>
     </div>
   );
