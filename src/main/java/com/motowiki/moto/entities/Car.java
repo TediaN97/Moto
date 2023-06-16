@@ -7,27 +7,24 @@ import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 
-@Entity
-@Setter
-@Getter
+@EqualsAndHashCode(callSuper = true)
+@Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
+@Entity
 @Table(name = "car")
 public class Car extends BaseEntity{
 
-    public Car(){
-    }
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
     private long id;
 
-    @NotNull
     private String brand;
 
     private String country;
 
     private Integer start_from;
 
-    private byte @NotNull [] logo;
+    private byte[] logo;
 }

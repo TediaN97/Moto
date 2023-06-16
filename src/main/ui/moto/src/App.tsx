@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Home from './pages/Home'
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 import CarCreateForm from './pages/CarCreateForm'
 import DataProvider from './components/DataProvider'
 
@@ -13,6 +14,8 @@ function App(){
         <Routes>
             <Route path="/" element={<DataProvider />} />
             <Route path="/car/carForm" element={<CarCreateForm />} />
+            <Route path="/signIn" element={<SignIn />} />
+            <Route path="/signUp" element={<SignUp />} />
         </Routes>
     </BrowserRouter>
   );
