@@ -32,7 +32,7 @@ const Footer: React.FC<FooterProps> = ({ isSelected, homeIsNotActive }) => {
   return (
     <footer className={`static max h-16 mt-10 w-full flex justify-center items-center `}>
         <div className="w-80">
-            <span className="hidden lg:flex text-sm ml-8">Created by <a href="https://www.linkedin.com/in/mat%C3%BA%C5%A1-sabat-571002118/">Ing.Matúš Sabat</a> © 2023</span>
+            <span className={`hidden ${isSelected ? "lg:hidden" : "lg:flex" } text-sm ml-8`}>Created by <a href="https://www.linkedin.com/in/mat%C3%BA%C5%A1-sabat-571002118/"> Ing.Matúš Sabat </a> © 2023</span>
             <ul className="flex justify-between lg:hidden">
                 <Li key={1} name={
                     <svg className={`fill-current ${activeButtonId === 1 ? "text-white" : "text-purple-900"}`} width="18" height="18" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">

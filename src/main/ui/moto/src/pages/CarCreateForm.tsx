@@ -45,6 +45,7 @@ function CarCreateForm(){
         <div className="flex-grow items-center justify-center ml-auto mr-auto">
             <Form onSelectedImage={handleSelectedImage} car={car} />
         </div>
+        <Footer isSelected={isSelected} homeIsNotActive={true} />
     </div>
   );
 }

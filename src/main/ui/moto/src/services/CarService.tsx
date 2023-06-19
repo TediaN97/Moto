@@ -6,9 +6,13 @@ export interface CarData {
 }
 
 export async function getAllCars() {
-
-    const response = await fetch('/car/list');
-    return await response.json();
+    try{
+        const response = await fetch('/car/list');
+        return await response.json();
+    } catch (error) {
+         console.error("Error loading data:", error);
+        throw error;
+      }
 }
 
 export async function createCar(data: CarData) {

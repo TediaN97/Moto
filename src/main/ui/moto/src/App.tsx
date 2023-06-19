@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import Home from './pages/Home'
 import CarCreateForm from './pages/CarCreateForm'
 import DataProvider from './components/DataProvider'
 
