@@ -16,21 +16,37 @@ export async function getAllCars() {
 }
 
 export async function createCar(data: CarData) {
+
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    };
+
+
     const response = await fetch(`/car/create`, {
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
+        headers: headers,
         body: JSON.stringify(data)
       })
       return await response.json();
 }
 
 export async function deleteCar(id: number){
+
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    };
+
+
    try {
        await fetch(`/car/delete/${id}`, {
          method: "DELETE",
-         headers: {
-           "Content-Type": "application/json",
-         },
+         headers: headers
        });
      } catch (error) {
         console.error("Error deleting car:", error);
@@ -39,13 +55,19 @@ export async function deleteCar(id: number){
 }
 
 export async function updateCar(id: number, data: CarData){
+
+   const token = localStorage.getItem('token');
+
+    const headers = {
+     'Content-Type': 'application/json',
+     'Authorization': `Bearer ${token}`
+    };
+
    try {
 
        await fetch(`/car/update/${id}`, {
          method: "PUT",
-         headers: {
-           "Content-Type": "application/json",
-         },
+         headers: headers,
          body: JSON.stringify(data)
        });
      } catch (error) {

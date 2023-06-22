@@ -1,12 +1,14 @@
 package com.motowiki.moto.models;
 
-import lombok.Getter;
+import lombok.*;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 
-@Getter
-@Component
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class CarModel {
 
     private String brand;

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
+import { getUserInfo, UserData, logout } from '../../services/AuthService';
 import { useNavigate } from 'react-router-dom';
 
 interface NavBarProps {
@@ -6,12 +7,33 @@ interface NavBarProps {
 }
 
 const NavBar = (props: NavBarProps) => {
-
     const navigate = useNavigate();
 
+    const [user, setUser] = useState<UserData | null >(null);
     const handleClick = (route: string) => {
         navigate(`${route}`)
     }
+
+    const handleLogoutClick = () => {
+        logout()
+        setUser(null);
+    }
+
+    useEffect(() => {
+           let isCancelled = false;
+           const fetchData = async () => {
+                 try {
+                   const userInfo = await getUserInfo();
+                   if(userInfo){
+                     setUser(userInfo);
+                   }
+                 } catch (error) {
+                   console.error("Error fetching user info:", error);
+                 }
+               };
+
+               fetchData();
+      }, []);
 
     return (
     <div>
@@ -28,8 +50,16 @@ const NavBar = (props: NavBarProps) => {
                 </li>
                 <li><a className="text-sm text-purple-600 hover:text-purple-900 cursor-pointer" onClick={() => handleClick('/compare')}>Compare</a></li>
             </ul>
-            <a className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-purple-100 text-sm text-purple-600 shadow-lg font-bold  rounded-xl transition duration-200 cursor-pointer" onClick={() => handleClick('/signIn')}>Sign In</a>
-            <a className="hidden lg:inline-block py-2 px-6 bg-purple-600 hover:bg-purple-900 text-sm text-white font-bold rounded-xl shadow-lg transition duration-200 cursor-pointer" onClick={() => handleClick('/signUp')}>Sign up</a>
+            {!user && (
+                <>
+                    <a className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-purple-100 text-sm text-purple-600 shadow-lg font-bold  rounded-xl transition duration-200 cursor-pointer" onClick={() => handleClick('/signIn')}>Sign In</a>
+                    <a className="hidden lg:inline-block py-2 px-6 bg-purple-600 hover:bg-purple-900 text-sm text-white font-bold rounded-xl shadow-lg transition duration-200 cursor-pointer" onClick={() => handleClick('/signUp')}>Sign up</a>
+                </>
+            )
+            }
+            {user && (
+                <a className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-purple-100 text-sm text-purple-600 shadow-lg font-bold  rounded-xl transition duration-200 cursor-pointer" onClick={handleLogoutClick}>{user.firstName} {user.lastName}</a>
+            )}
         </nav>
     </div>
     )
