@@ -93,6 +93,7 @@ const Form = ( props: FormProps ) => {
                const response = await updateCar(props.car?.car?.id, { brand: textValue, country: selectedValue, start_from: numberValue, logo: fileValue });
                if('error' in response) {
                    const errorResponse = response as ErrorResponse;
+                   navigate('/');
                }else {
                    setCar({ brand: '', country: '', start_from: '', logo: '' });
                    handleResetClick();

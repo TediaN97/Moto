@@ -13,7 +13,7 @@ const ImageComponent = (props: ImageProps) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`car/${props.brand}`)
+    navigate(`car/models/${props.brand}`)
   }
 
   return (
