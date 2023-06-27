@@ -3,10 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import Input from "./Input";
 import Button from "../Button";
-import { authentication, ErrorResponse } from "../../services/AuthService";
+import { authentication, ErrorResponse, getUserInfo } from "../../services/AuthService";
 import { useNavigate } from "react-router-dom"
 
-const Login = () => {
+interface LoginProps{
+    loggedUserInfo: (value: Object) => void;
+}
+
+const Login = (props: LoginProps) => {
 
   const navigate = useNavigate();
 
@@ -34,20 +38,19 @@ const Login = () => {
         }else {
             const token = response.token;
             localStorage.token = token;
+            props.loggedUserInfo(await getUserInfo());
             navigate('/');
         }
     } catch(error) {
     }
   }
 
-
-
   return(
     <div className="flex-grow items-center justify-center ml-auto mr-auto">
-       <div className="max w-full px-10 py-10 mt-16 md:mt-28 bg-purple-200 bg-opacity-40 shadow-xl shadow-purple-700 rounded-3xl">
+       <div className="w-11/12 px-10 py-10 ml-4 mt-10 md:mt-28 bg-purple-200 bg-opacity-40 shadow-xl shadow-purple-700 rounded-3xl lg:max w-full">
             {error && (
                <div className="bg-red-100 border border-red-400 text-red-700 py-3 px-4 rounded relative" role="alert">
-                 <span className="block sm:inline">That email and password combination is incorrect.</span>
+                 <span className="">That email and password combination is incorrect</span>
                </div>
               )}
             <Input name="Email" icon={<FontAwesomeIcon icon={faEnvelope} />} placeholder="Email..." width="w-full" value={emailValue} onTextChange={handleEmailChange} type="text"/>

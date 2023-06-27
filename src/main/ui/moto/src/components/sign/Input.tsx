@@ -1,4 +1,4 @@
-import React, { MouseEvent, ChangeEvent } from 'react';
+import React, { ChangeEvent } from 'react';
 
 interface InputProps{
     name: React.ReactNode;
@@ -25,7 +25,7 @@ const Input: React.FC<InputProps>= ({name, icon, placeholder, width, value, onTe
              <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                  {icon}
              </div>
-             <input type={type} className="w-full h-16 -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" value={value} placeholder={placeholder} onChange={handleChange}/>
+             <input type={type} className="w-full h-16 -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-purple-500" value={value} placeholder={placeholder} onChange={handleChange} />
          </div>
      </div>
   )

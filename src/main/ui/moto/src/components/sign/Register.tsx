@@ -3,13 +3,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import Input from "./Input";
 import Button from "../Button";
-import { register } from "../../services/AuthService";
+import { register, ErrorResponse } from "../../services/AuthService";
 import { useNavigate } from "react-router-dom"
 
 const Register = () => {
 
   const navigate = useNavigate();
 
+  const [error, setError] = useState(false);
   const [firstNameValue, setFirstNameValue] = useState<string>("");
   const [lastNameValue, setLastNameValue] = useState<string>("");
   const [emailValue, setEmailValue] = useState<string>("");
@@ -17,29 +18,46 @@ const Register = () => {
 
  const handleFirstNameChange = (value: string) => {
       setFirstNameValue(value);
+      setError(false);
   }
 
   const handleLastNameChange = (value: string) => {
       setLastNameValue(value);
+      setError(false);
    }
 
    const handleEmailChange = (value: string) => {
       setEmailValue(value);
+      setError(false);
    }
 
    const handlePasswordChange = (value: string) => {
       setPasswordValue(value);
+      setError(false);
    }
 
- const handleRegisterClick = () => {
-        register({ firstname: firstNameValue, lastname: lastNameValue, email: emailValue, password: passwordValue, role: "USER" });
-        navigate('/signUp');
+ const handleRegisterClick = async () => {
+        try{
+            const response = await register({ firstname: firstNameValue, lastname: lastNameValue, email: emailValue, password: passwordValue, role: "USER" });
+            if('error' in response) {
+                const errorResponse = response as ErrorResponse;
+                setError(true);
+            }else {
+                navigate('/signUp');
+            }
+        } catch(error) {
+        }
  }
 
 
   return(
     <div className="flex-grow items-center justify-center ml-auto mr-auto">
-       <div className="min w-full p-5 mt-16 md:mt-28 bg-purple-200 bg-opacity-40 shadow-xl shadow-purple-700 rounded-3xl">
+       <div className="w-11/12 ml-4 p-5 mt-10 md:mt-28 bg-purple-200 bg-opacity-40 shadow-xl shadow-purple-700 rounded-3xl lg:max w-full">
+            {error && (
+               <div className="bg-red-100 border border-red-400 text-red-700 py-3 px-4 rounded relative" role="alert">
+                 <span className="flex justify-center items-center">User with this email is already exist.</span>
+               </div>
+              )}
             <div className="flex">
                 <Input name="First name"
                        icon={<svg className={`fill-current text-purple-600`} width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

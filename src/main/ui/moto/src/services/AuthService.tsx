@@ -24,12 +24,21 @@ export interface UserData {
 
 
 export async function register(data: RegisterData) {
+    try{
     const response = await fetch(`/api/v1/auth/register`, {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify(data)
       })
+
+       if (!response.ok) {
+          const errorResponse = await response.json();
+          throw new Error(errorResponse.message);
+        }
       return await response.json();
+    }catch(e: any ){
+        return { error: e.message } as ErrorResponse
+    }
 }
 
 export async function authentication(data: AuthData): Promise<any | ErrorResponse> {
@@ -63,18 +72,20 @@ export async function getUserInfo() {
         const response = await fetch('/api/v1/auth/userInfo', { headers });
         return await response.json();
     }catch (error) {
-         console.error("Error user is not loaded:", error);
           throw error;
     }
 }
 
 export async function logout() {
-    const token = localStorage.getItem('token');
-    const headers = {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`
-    };
+    try{
+        const token = localStorage.getItem('token');
+        const headers = {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        };
 
-    const response = await fetch(`/api/v1/auth/logout`, { headers })
-      return await response.json();
+        const response = await fetch(`/api/v1/auth/logout`, { headers });
+        return await response.json();
+    } catch(error) {
+    }
 }

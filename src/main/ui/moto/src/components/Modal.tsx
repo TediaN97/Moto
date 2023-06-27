@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import Button from './Button';
-import { deleteCar } from '../services/CarService'
+import { deleteCar, ErrorResponse } from '../services/CarService'
 
 interface ModalProps {
     title: string;
@@ -21,9 +21,16 @@ function Modal(props: ModalProps) {
     setIsOpen(false);
   };
 
-  const handleDeleteClick = (id: number) => {
-      deleteCar(id);
-      closeModal();
+  const handleDeleteClick = async (id: number) => {
+      try{
+           const response =  await deleteCar(id);
+           if('error' in response) {
+               const errorResponse = response as ErrorResponse;
+           }else {
+              closeModal();
+          }
+      }catch (error) {
+      }
   }
 
   return (

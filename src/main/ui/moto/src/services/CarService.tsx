@@ -1,3 +1,7 @@
+export interface ErrorResponse {
+  error: string;
+}
+
 export interface CarData {
   brand: string;
   country: string;
@@ -16,7 +20,6 @@ export async function getAllCars() {
 }
 
 export async function createCar(data: CarData) {
-
     const token = localStorage.getItem('token');
 
     const headers = {
@@ -24,13 +27,22 @@ export async function createCar(data: CarData) {
       'Authorization': `Bearer ${token}`
     };
 
+    try{
+        const response = await fetch(`/car/create`, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(data)
+          })
 
-    const response = await fetch(`/car/create`, {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify(data)
-      })
-      return await response.json();
+           if (!response.ok) {
+              const errorResponse = await response.json();
+              throw new Error(errorResponse.message);
+          }
+
+          return await response.json();
+    } catch(e: any ){
+          return { error: e.message } as ErrorResponse
+    }
 }
 
 export async function deleteCar(id: number){
@@ -44,14 +56,20 @@ export async function deleteCar(id: number){
 
 
    try {
-       await fetch(`/car/delete/${id}`, {
+       const response = await fetch(`/car/delete/${id}`, {
          method: "DELETE",
          headers: headers
        });
-     } catch (error) {
-        console.error("Error deleting car:", error);
-       throw error;
-     }
+
+       if (!response.ok) {
+            const errorResponse = await response.json();
+            throw new Error(errorResponse.message);
+       }
+       return await response.json();
+
+     } catch(e: any ){
+            return { error: e.message } as ErrorResponse
+      }
 }
 
 export async function updateCar(id: number, data: CarData){
@@ -65,13 +83,19 @@ export async function updateCar(id: number, data: CarData){
 
    try {
 
-       await fetch(`/car/update/${id}`, {
+       const response = await fetch(`/car/update/${id}`, {
          method: "PUT",
          headers: headers,
          body: JSON.stringify(data)
        });
-     } catch (error) {
-        console.error("Error updating car:", error);
-       throw error;
-     }
+
+       if (!response.ok) {
+         const errorResponse = await response.json();
+         throw new Error(errorResponse.message);
+      }
+      return await response.json();
+
+   } catch(e: any ){
+         return { error: e.message } as ErrorResponse
+   }
 }

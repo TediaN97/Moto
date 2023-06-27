@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { getAllCars } from '../services/CarService';
+import { getUserInfo } from '../services/AuthService';
 import Home from '../pages/Home';
 
-function DataProvider(){
+interface DataProviderProps {
+    user: any;
+    onLogout: (value: any ) => void;
+}
+
+function DataProvider(props: DataProviderProps){
   const [cars, setCars] = useState<Array<Object>>([]);
+
+  const handleLogout = (value: any ) => {
+    props.onLogout(value);
+  }
+
 
   useEffect(() => {
        let isCancelled = false;
@@ -21,7 +32,7 @@ function DataProvider(){
   }, [cars]);
 
   return (
-        <Home data={cars}/>
+        <Home data={cars} user={props.user} onLogout={handleLogout}/>
        );
 }
 

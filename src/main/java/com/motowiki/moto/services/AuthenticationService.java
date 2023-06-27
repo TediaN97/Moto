@@ -1,5 +1,6 @@
 package com.motowiki.moto.services;
 
+import com.motowiki.moto.entities.Car;
 import com.motowiki.moto.entities.Token;
 import com.motowiki.moto.entities.User;
 import com.motowiki.moto.models.RegisterRequest;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -27,7 +29,15 @@ public class AuthenticationService {
     private final TokenRepository tokenRepository;
 
 
-    public AuthenticationResponse register(RegisterRequest request) {
+    public AuthenticationResponse register(RegisterRequest request) throws Exception {
+
+        List<User> listOfUsers = findAll();
+        for(User checkUser : listOfUsers) {
+            if (Objects.equals(request.getEmail(), checkUser.getEmail())) {
+                throw new Exception("User with this email is already in a table");
+            }
+        }
+
         var user = User.builder()
                 .firstname(request.getFirstname())
                 .lastname(request.getLastname())
@@ -85,6 +95,10 @@ public class AuthenticationService {
             token.setRevoked(true);
         });
         tokenRepository.saveAll(validUserTokens);
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll().stream().sorted(Comparator.comparing(User::getId)).toList();
     }
 
 }

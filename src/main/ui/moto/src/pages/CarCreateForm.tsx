@@ -4,8 +4,12 @@ import Footer from '../components/Footer';
 import Form from '../components/Form';
 import { useNavigate, useLocation } from 'react-router-dom';
 
+interface CarCreateFormProps {
+    user: any;
+    onLogout: (value: any) => void;
+}
 
-function CarCreateForm(){
+function CarCreateForm(props: CarCreateFormProps){
 
   const [isSelected, setIsSelected] = useState(false);
 
@@ -30,6 +34,10 @@ function CarCreateForm(){
        setIsSelected(value);
   }
 
+  const handleLogout = (value: any ) => {
+     props.onLogout(value);
+  }
+
  //changeNameTitle
  useEffect(() => {
      const titleElement = document.querySelector('title');
@@ -40,7 +48,7 @@ function CarCreateForm(){
 
   return (
     <div className="h-screen w-screen m-0 p-0 box-border flex flex-col font-rowdies font-light bg-purple-100 bg-opacity-30 text-purple-600">
-        <Header name="MOTOWIKI" />
+        <Header name="MOTOWIKI" user={props.user} onLogout={handleLogout}/>
         <span className="text-2xl ml-5 lg:ml-16 mt-10 font-semibold">Car Form</span>
         <div className="flex-grow items-center justify-center ml-auto mr-auto">
             <Form onSelectedImage={handleSelectedImage} car={car} />

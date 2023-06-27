@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import './App.css';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
@@ -9,13 +9,23 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App(){
 
+  const [user, setUser] = useState<Array<Object>>([]);
+
+  const handleUserInfo = (value: any) => {
+    setUser(value);
+  }
+
+  const handleLogout = (value: any) => {
+    setUser(value);
+  }
+
   return (
     <BrowserRouter>
         <Routes>
-            <Route path="/" element={<DataProvider />} />
-            <Route path="/car/carForm" element={<CarCreateForm />} />
-            <Route path="/signIn" element={<SignIn />} />
-            <Route path="/signUp" element={<SignUp />} />
+            <Route path="/" element={<DataProvider user={user} onLogout={handleLogout} />} />
+            <Route path="/car/carForm" element={<CarCreateForm user={user} onLogout={handleLogout} />} />
+            <Route path="/signIn" element={<SignIn user={user} onLogout={handleLogout} />} />
+            <Route path="/signUp" element={<SignUp loggedUserInfo={handleUserInfo} onLogout={handleLogout} />} />
         </Routes>
     </BrowserRouter>
   );

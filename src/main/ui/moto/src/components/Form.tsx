@@ -3,7 +3,7 @@ import Button from './Button';
 import InputText from './inputs/InputText';
 import InputNumber from './inputs/InputNumber';
 import InputSelect from './inputs/InputSelect';
-import { createCar, CarData, updateCar } from '../services/CarService'
+import { createCar, CarData, updateCar, ErrorResponse } from '../services/CarService'
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
@@ -28,7 +28,6 @@ const Form = ( props: FormProps ) => {
   const [fileValue, setFileValue] = useState<string | undefined >(props.car?.car?.logo ? props.car?.car?.logo : '');
 
   const [car, setCar] = useState<CarData>({ brand: '', country: '', start_from: '', logo: '' });
-  const [numberOfCars, setNumberOfCars] = useState<number>(0);
 
     const handleImageChange = (event: ChangeEvent<HTMLInputElement>)=> {
       const file = event.target.files?.[0];
@@ -75,21 +74,32 @@ const Form = ( props: FormProps ) => {
             setCar((prevCar: CarData) => {return {...prevCar, country: value }});
    }
 
-   const handleSaveClick = () => {
+   const handleSaveClick = async () => {
         if(!props.car.car){
-            createCar({ brand: textValue, country: selectedValue, start_from: numberValue, logo: fileValue })
-                  .then(response => {
-                    setNumberOfCars(prevNumberOfCars => prevNumberOfCars + 1);
-                  });
+            try {
+                const response =  await createCar({ brand: textValue, country: selectedValue, start_from: numberValue, logo: fileValue });
+                if('error' in response) {
+                    const errorResponse = response as ErrorResponse;
+                }else {
+                    setCar({ brand: '', country: '', start_from: '', logo: '' });
+                    handleResetClick();
+                    navigate('/');
+                }
+            } catch(error){
 
-            setCar({ brand: '', country: '', start_from: '', logo: '' });
-            handleResetClick();
-            navigate('/');
+            }
         }else {
-           updateCar(props.car?.car?.id, { brand: textValue, country: selectedValue, start_from: numberValue, logo: fileValue });
-           setCar({ brand: '', country: '', start_from: '', logo: '' });
-           handleResetClick();
-           navigate('/');
+           try {
+               const response = await updateCar(props.car?.car?.id, { brand: textValue, country: selectedValue, start_from: numberValue, logo: fileValue });
+               if('error' in response) {
+                   const errorResponse = response as ErrorResponse;
+               }else {
+                   setCar({ brand: '', country: '', start_from: '', logo: '' });
+                   handleResetClick();
+                   navigate('/');
+               }
+           } catch(error) {
+           }
         }
    }
 
