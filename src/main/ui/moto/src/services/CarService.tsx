@@ -1,3 +1,7 @@
+export interface ErrorResponse {
+  error: string;
+}
+
 export interface CarData {
   brand: string;
   country: string;
@@ -9,47 +13,89 @@ export async function getAllCars() {
     try{
         const response = await fetch('/car/list');
         return await response.json();
-    } catch (error) {
-         console.error("Error loading data:", error);
-        throw error;
-      }
+    }catch (error) {
+         console.error("Error list of cars:", error);
+          throw error;
+    }
 }
 
 export async function createCar(data: CarData) {
-    const response = await fetch(`/car/create`, {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data)
-      })
-      return await response.json();
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    };
+
+    try{
+        const response = await fetch(`/car/create`, {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(data)
+          })
+
+           if (!response.ok) {
+              const errorResponse = await response.json();
+              throw new Error(errorResponse.message);
+          }
+
+          return await response.json();
+    } catch(e: any ){
+          return { error: e.message } as ErrorResponse
+    }
 }
 
 export async function deleteCar(id: number){
+
+    const token = localStorage.getItem('token');
+
+    const headers = {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    };
+
+
    try {
-       await fetch(`/car/delete/${id}`, {
+       const response = await fetch(`/car/delete/${id}`, {
          method: "DELETE",
-         headers: {
-           "Content-Type": "application/json",
-         },
+         headers: headers
        });
-     } catch (error) {
-        console.error("Error deleting car:", error);
-       throw error;
-     }
+
+       if (!response.ok) {
+            const errorResponse = await response.json();
+            throw new Error(errorResponse.message);
+       }
+       return await response.json();
+
+     } catch(e: any ){
+            return { error: e.message } as ErrorResponse
+      }
 }
 
 export async function updateCar(id: number, data: CarData){
+
+   const token = localStorage.getItem('token');
+
+    const headers = {
+     'Content-Type': 'application/json',
+     'Authorization': `Bearer ${token}`
+    };
+
    try {
 
-       await fetch(`/car/update/${id}`, {
+       const response = await fetch(`/car/update/${id}`, {
          method: "PUT",
-         headers: {
-           "Content-Type": "application/json",
-         },
+         headers: headers,
          body: JSON.stringify(data)
        });
-     } catch (error) {
-        console.error("Error updating car:", error);
-       throw error;
-     }
+
+       if (!response.ok) {
+         const errorResponse = await response.json();
+         throw new Error(errorResponse.message);
+      }
+      return await response.json();
+
+   } catch(e: any ){
+         return { error: e.message } as ErrorResponse
+   }
 }

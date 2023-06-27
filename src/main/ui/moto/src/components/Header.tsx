@@ -11,6 +11,8 @@ import NavBar from './navigationBar/NavBar'
 
 interface HeaderProps {
   name: string;
+  user?: any;
+  onLogout: (value: any) => void;
 }
 
 const Header = (props: HeaderProps) => {
@@ -32,9 +34,13 @@ const Header = (props: HeaderProps) => {
       }
     }
 
+    const handleLogout = (value: any) => {
+        props.onLogout(value);
+    }
+
   return (
     <header className="max h-30 w-full rounded-bl-3xl rounded-br-3xl">
-        <NavBar name={props.name} />
+        <NavBar name={props.name} user={props.user} onLogout={handleLogout}/>
     </header>
   );
 }

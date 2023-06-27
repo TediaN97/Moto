@@ -11,9 +11,11 @@ import { faFilter } from '@fortawesome/free-solid-svg-icons';
 
 interface HomeProps {
     data: any;
+    user: any;
+    onLogout: (value: any) => void;
 }
 
-const Home: React.FC<HomeProps> = ({data}) => {
+const Home: React.FC<HomeProps> = ({data, user, onLogout }) => {
 
   //useState
   const [textValue, setTextValue] = useState('');
@@ -43,6 +45,10 @@ const Home: React.FC<HomeProps> = ({data}) => {
         setFilteredCountry(value);
   }
 
+  const handleLogout = (value: any ) => {
+    onLogout([]);
+  }
+
   //changeNameTitle
     useEffect(() => {
         document.title = 'MOTOWIKI';
@@ -50,7 +56,7 @@ const Home: React.FC<HomeProps> = ({data}) => {
 
   return (
     <div className="h-screen m-0 p-0 box-border flex flex-col font-rowdies font-light bg-purple-100 bg-opacity-30 text-purple-600">
-        <Header name="MOTOWIKI"/>
+        <Header name="MOTOWIKI" user={user} onLogout={handleLogout}/>
         <div className="flex-grow">
             <div className="mt-5 ml-5 flex justify-evenly md:ml-0 lg:justify-end">
                     <p onClick={handleClick} className="mt-6 ml-10 text-lg font-rowdies font-light hidden">Home</p>
@@ -75,7 +81,7 @@ const Home: React.FC<HomeProps> = ({data}) => {
                     )}
                 </div>
             </div>
-            <Content data={data} searchValue={searchValue} filteredCountry={filteredCountry}/>
+            <Content data={data} searchValue={searchValue} filteredCountry={filteredCountry} user={user}/>
         </div>
         <Footer />
     </div>

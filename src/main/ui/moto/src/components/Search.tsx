@@ -21,7 +21,7 @@ const Search: React.FC<SearchProps> = ({ value, onTextChange }) => {
                 </div>
 
                 <input
-                    className="peer h-full w-full outline-none text-sm text-gray-700 pr-2"
+                    className="peer h-full w-full outline-none text-sm text-purple-600 pr-2"
                     type="text"
                     id="search"
                     placeholder="Search brand.."
