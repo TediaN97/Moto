@@ -1,11 +1,7 @@
 package com.motowiki.moto.entities;
 
-import com.motowiki.moto.enumerations.Bodywork;
-import com.motowiki.moto.enumerations.CarClass;
 import jakarta.persistence.*;
 import lombok.*;
-
-import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -28,11 +24,9 @@ public class Model extends BaseEntity {
 
     private String model;
 
-    @Enumerated(EnumType.STRING)
-    private CarClass carClass;
+    private String carClass;
 
-    @Enumerated(EnumType.STRING)
-    private Bodywork bodywork;
+    private String bodywork;
 
     private Integer price_from;
 
@@ -47,4 +41,7 @@ public class Model extends BaseEntity {
     private Integer car_length;
 
     private Integer weight;
+
+    @Column(name = "images", columnDefinition = "bytea[][]")
+    private byte[][] images;
 }

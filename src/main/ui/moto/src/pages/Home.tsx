@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Content from '../components/Content';
+import ContentBrand from '../components/ContentBrand';
 import Search from '../components/Search';
 import Button from '../components/Button';
 import Filter from '../components/Filter';
@@ -81,7 +81,7 @@ const Home: React.FC<HomeProps> = ({data, user, onLogout }) => {
                     )}
                 </div>
             </div>
-            <Content data={data} searchValue={searchValue} filteredCountry={filteredCountry} user={user}/>
+            <ContentBrand data={data} searchValue={searchValue} filteredCountry={filteredCountry} user={user}/>
         </div>
         <Footer />
     </div>

@@ -4,6 +4,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Models from './pages/Models';
 import CarCreateForm from './pages/CarCreateForm'
+import ModelCreateForm from './pages/ModelCreateForm'
 import DataProvider from './components/DataProvider'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -28,6 +29,7 @@ function App(){
             <Route path="/signIn" element={<SignIn user={user} onLogout={handleLogout} />} />
             <Route path="/signUp" element={<SignUp loggedUserInfo={handleUserInfo} onLogout={handleLogout} />} />
             <Route path="/car/models/*" element={<Models user={user} onLogout={handleLogout} />} />
+            <Route path="/car/models/modelCreateForm" element={<ModelCreateForm user={user} onLogout={handleLogout} />} />
         </Routes>
     </BrowserRouter>
   );

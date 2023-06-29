@@ -14,6 +14,7 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -33,7 +34,7 @@ public class ModelService {
     }
 
     public Model create(ModelModel model) throws Exception {
-        List<Model> listOfModels = findAll();
+        List<Model> listOfModels = findAllById(model.getCar_id());
         for(Model checkModel : listOfModels){
             if(Objects.equals(model.getModel(), checkModel.getModel())){
                 throw new Exception("Model with this name of model is already in a table");
@@ -41,6 +42,17 @@ public class ModelService {
         }
 
         Car getCar = carService.findById(model.getCar_id());
+
+        List<String> images = model.getImages();
+
+        byte[][] imageBytesArray = new byte[images.size()][];
+
+        for (int i = 0; i < images.size(); i++) {
+            String imageString = images.get(i);
+            byte[] imageBytes = Base64.getDecoder().decode(imageString);
+            imageBytesArray[i] = imageBytes;
+        }
+
 
         Model modelToSave = Model.builder()
                 .car(getCar)
@@ -54,6 +66,7 @@ public class ModelService {
                 .width(model.getWidth())
                 .car_length(model.getCar_length())
                 .weight(model.getWeight())
+                .images(imageBytesArray)
                 .build();
 
         return repository.save(modelToSave);
@@ -63,15 +76,15 @@ public class ModelService {
         return repository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
-    public List<Model> findAll() {
-        return repository.findAll().stream().sorted(Comparator.comparing(Model::getId)).toList();
+    public List<Model> findAllById(long id) {
+        return repository.findAllById(id).stream().sorted(Comparator.comparing(Model::getId)).toList();
     }
 
     public Model updateOne(long id, ModelModel requestModel) throws Exception {
 
         Model model = repository.findById(id).orElseThrow(EntityNotFoundException::new);
 
-        List<Model> listOfModels = findAll();
+        List<Model> listOfModels = findAllById(id);
         for(Model checkModel : listOfModels){
             if(Objects.equals(requestModel.getModel(), checkModel.getModel()) && checkModel.getId() != id){
                 throw new Exception("Model with this name of model is already in a table");

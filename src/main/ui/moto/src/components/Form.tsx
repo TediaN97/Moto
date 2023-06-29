@@ -113,8 +113,8 @@ const Form = ( props: FormProps ) => {
   return (
     <div className="max w-screen bg-purple-300 bg-opacity-20 rounded-tl-full rounded-tr-full p-10 text-purple-600 mt-10 md:max-w-max">
         <InputText name="Brand:" value={textValue} onTextChange={handleTextChange} />
-        <InputSelect name="Country:" value={selectedValue} onSelectChange={handleSelectChange} />
-        <InputNumber name="Introduced:" value={numberValue} onNumberChange={handleNumberChange} />
+        <InputSelect name="Country:" value={selectedValue} onSelectChange={handleSelectChange} options="country" />
+        <InputNumber name="Introduced:" value={numberValue} onNumberChange={handleNumberChange} introduced={true} />
         <input ref={fileInputRef} className="hidden" type="file" onChange={handleImageChange} accept="image/png, image/gif, image/jpeg" />
         {selectedImage ? (
             <div>

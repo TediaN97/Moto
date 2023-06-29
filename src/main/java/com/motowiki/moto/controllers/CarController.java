@@ -31,6 +31,11 @@ public class CarController {
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
+    @GetMapping("/models/{brand}")
+    public ResponseEntity<Car> getCarByBrand(@PathVariable("brand") String brand) {
+        return new ResponseEntity<>(service.findByBrand(brand), HttpStatus.OK);
+    }
+
     @GetMapping("/list")
     public ResponseEntity<List<Car>> getAllProducts() {
         return new ResponseEntity<>(service.findAll(), HttpStatus.OK);

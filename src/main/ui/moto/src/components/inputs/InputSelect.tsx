@@ -5,9 +5,10 @@ interface SelectProps {
     name: String;
     onSelectChange: (value: string) => void;
     value: string;
+    options: string;
 }
 
-const InputSelect: React.FC<SelectProps> = ({name, value, onSelectChange}) => {
+const InputSelect: React.FC<SelectProps> = ({name, value, onSelectChange, options}) => {
 
   const [inputValue, setInputValue ] = useState('');
 
@@ -19,7 +20,7 @@ const InputSelect: React.FC<SelectProps> = ({name, value, onSelectChange}) => {
   return (
     <div className="mt-5 text-2xl lg:text-4xl items-center justify-between flex">
         <p className="font-rowdies">{name}</p>
-        <Select value={value} onSelectChange={handleChange} />
+        <Select value={value} onSelectChange={handleChange} options={options}/>
     </div>
   );
 }

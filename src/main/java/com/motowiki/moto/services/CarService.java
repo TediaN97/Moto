@@ -49,6 +49,10 @@ public class CarService {
         return repository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 
+    public Car findByBrand(String brand) {
+        return repository.findByBrand(brand);
+    }
+
     public List<Car> findAll() {
         return repository.findAll().stream().sorted(Comparator.comparing(Car::getId)).toList();
     }

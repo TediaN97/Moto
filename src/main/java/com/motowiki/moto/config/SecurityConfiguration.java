@@ -4,6 +4,7 @@ import jakarta.servlet.Filter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -33,9 +34,9 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/v1/auth/**","/car/list")
+                .requestMatchers("/api/v1/auth/**", "car/**", "model/**")
                 .permitAll()
-                .requestMatchers("/car/**").hasAnyRole(ADMIN.name())
+                .requestMatchers( "car/create", "car/delete/**","car/update/**").hasAnyRole(ADMIN.name())
                 .anyRequest()
                 .authenticated()
                 .and()

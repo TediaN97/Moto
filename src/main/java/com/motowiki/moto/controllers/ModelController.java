@@ -31,9 +31,9 @@ public class ModelController {
         return new ResponseEntity<>(service.findById(id), HttpStatus.OK);
     }
 
-    @GetMapping("/list")
-    public ResponseEntity<List<Model>> getAllProducts() {
-        return new ResponseEntity<>(service.findAll(), HttpStatus.OK);
+    @GetMapping("{carId}/list")
+    public ResponseEntity<List<Model>> getAllProducts(@PathVariable("carId") int car_id) {
+        return new ResponseEntity<>(service.findAllById(car_id), HttpStatus.OK);
     }
 
     @PutMapping("/update/{id}")
