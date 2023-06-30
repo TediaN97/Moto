@@ -21,7 +21,7 @@ export async function getAllCars() {
 
 export async function getFindByBrand(brand: string) {
 
-     const token = localStorage.getItem('token');
+     const token = localStorage.getItem('access_token');
 
      const headers = {
        'Content-Type': 'application/json',
@@ -30,15 +30,20 @@ export async function getFindByBrand(brand: string) {
 
     try{
         const response = await fetch(`/car/models/${brand}`, {headers});
-        return await response.json();
-    }catch (error) {
-         console.error("Error list of cars:", error);
-          throw error;
+
+         if (!response.ok) {
+              const errorResponse = await response.json();
+              throw new Error(errorResponse.message);
+          }
+
+          return await response.json();
+    } catch(e: any ){
+          return { error: e.message } as ErrorResponse
     }
 }
 
 export async function createCar(data: CarData) {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
 
     const headers = {
       'Content-Type': 'application/json',
@@ -65,7 +70,7 @@ export async function createCar(data: CarData) {
 
 export async function deleteCar(id: number){
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
 
     const headers = {
       'Content-Type': 'application/json',
@@ -92,7 +97,7 @@ export async function deleteCar(id: number){
 
 export async function updateCar(id: number, data: CarData){
 
-   const token = localStorage.getItem('token');
+   const token = localStorage.getItem('access_token');
 
     const headers = {
      'Content-Type': 'application/json',

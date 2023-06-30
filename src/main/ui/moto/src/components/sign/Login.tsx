@@ -36,8 +36,8 @@ const Login = (props: LoginProps) => {
             const errorResponse = response as ErrorResponse;
             setError(true);
         }else {
-            const token = response.token;
-            localStorage.token = token;
+            localStorage.access_token = response.access_token;
+            localStorage.refresh_token = response.refresh_token;
             props.loggedUserInfo(await getUserInfo());
             navigate('/');
         }

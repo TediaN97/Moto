@@ -21,7 +21,6 @@ const ModelDataProvider: React.FC<ModelDataProviderProps> = ({ children, car }) 
             .then(data => {
               if(!isCancelled) {
                 const sortedData = data.sort((a: any, b: any) => a.model.localeCompare(b.model));
-
                 setModels(sortedData);
               }
             });

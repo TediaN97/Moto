@@ -77,7 +77,7 @@ public class ModelService {
     }
 
     public List<Model> findAllById(long id) {
-        return repository.findAllById(id).stream().sorted(Comparator.comparing(Model::getId)).toList();
+        return repository.findAllById(id).stream().sorted(Comparator.comparing(model -> model.getCar().getId())).toList();
     }
 
     public Model updateOne(long id, ModelModel requestModel) throws Exception {

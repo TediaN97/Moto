@@ -6,11 +6,14 @@ import com.motowiki.moto.models.AuthenticationResponse;
 import com.motowiki.moto.models.RegisterRequest;
 import com.motowiki.moto.models.UserInfo;
 import com.motowiki.moto.services.AuthenticationService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.security.Principal;
 
 @RestController
@@ -44,6 +47,13 @@ public class AuthenticationController {
         userInfo.setRole(userObj.getRole());
 
         return ResponseEntity.ok(userInfo);
+    }
 
+    @PostMapping("/refresh-token")
+    public void refreshToken(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws IOException {
+        authenticationService.refreshToken(request, response);
     }
 }

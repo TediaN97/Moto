@@ -30,7 +30,7 @@ public class MotoApplication {
 					.password("123456789")
 					.role(ADMIN)
 					.build();
-			System.out.println("Admin token: " + service.register(admin).getToken());
+			System.out.println("Admin token: " + service.register(admin).getAccessToken());
 		};
 	}
 

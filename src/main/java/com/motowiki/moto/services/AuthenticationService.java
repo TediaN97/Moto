@@ -1,19 +1,25 @@
 package com.motowiki.moto.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.motowiki.moto.entities.Car;
 import com.motowiki.moto.entities.Token;
 import com.motowiki.moto.entities.User;
+import com.motowiki.moto.enumerations.TokenType;
 import com.motowiki.moto.models.RegisterRequest;
 import com.motowiki.moto.models.AuthenticationRequest;
 import com.motowiki.moto.models.AuthenticationResponse;
 import com.motowiki.moto.repositories.token.TokenRepository;
 import com.motowiki.moto.repositories.user.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.io.IOException;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
@@ -49,10 +55,12 @@ public class AuthenticationService {
         var savedUser = userRepository.save(user);
 
         var jwtToken = jwtService.generateToken(user);
+        var refreshToken = jwtService.generateRefreshToken(user);
         saveUserToken(savedUser, jwtToken);
         return AuthenticationResponse
                 .builder()
-                .token(jwtToken)
+                .accessToken(jwtToken)
+                .refreshToken(refreshToken)
                 .build();
     }
 
@@ -67,12 +75,14 @@ public class AuthenticationService {
         var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
 
         var jwtToken = jwtService.generateToken(user);
+        var refreshToken = jwtService.generateRefreshToken(user);
         revokeAllUserTokens(user);
         saveUserToken(user, jwtToken);
 
         return AuthenticationResponse
                 .builder()
-                .token(jwtToken)
+                .accessToken(jwtToken)
+                .refreshToken(refreshToken)
                 .build();
     }
 
@@ -80,6 +90,7 @@ public class AuthenticationService {
         var token = Token.builder()
                 .user(user)
                 .token(jwtToken)
+                .tokenType(TokenType.BEARER)
                 .expired(false)
                 .revoked(false)
                 .build();
@@ -99,6 +110,34 @@ public class AuthenticationService {
 
     public List<User> findAll() {
         return userRepository.findAll().stream().sorted(Comparator.comparing(User::getId)).toList();
+    }
+
+    public void refreshToken(
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) throws IOException {
+        final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
+        final String refreshToken;
+        final String userEmail;
+        if (authHeader == null ||!authHeader.startsWith("Bearer ")) {
+            return;
+        }
+        refreshToken = authHeader.substring(7);
+        userEmail = jwtService.extractUsername(refreshToken);
+        if (userEmail != null) {
+            var user = this.userRepository.findByEmail(userEmail)
+                    .orElseThrow();
+            if (jwtService.isTokenValid(refreshToken, user)) {
+                var accessToken = jwtService.generateToken(user);
+                revokeAllUserTokens(user);
+                saveUserToken(user, accessToken);
+                var authResponse = AuthenticationResponse.builder()
+                        .accessToken(accessToken)
+                        .refreshToken(refreshToken)
+                        .build();
+                new ObjectMapper().writeValue(response.getOutputStream(), authResponse);
+            }
+        }
     }
 
 }

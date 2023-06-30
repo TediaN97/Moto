@@ -19,5 +19,7 @@ public interface ModelRepository extends JpaRepository<Model, Long> {
     @Query(value = "UPDATE Model m SET m.car = :car WHERE m.id = :id", nativeQuery = true)
     void updateById(@Param("car") Car car, @Param("id") long id);
 
-    List<Model> findAllById(long car_id);
+    List<Model> findAllByCar(Car car);
+
+    List<Model> findAllById(long id);
 }

@@ -28,7 +28,7 @@ export async function getAllModels(carId: number) {
 
 export async function getFindByModel(model: string) {
 
-     const token = localStorage.getItem('token');
+     const token = localStorage.getItem('access_token');
 
      const headers = {
        'Content-Type': 'application/json',
@@ -45,7 +45,7 @@ export async function getFindByModel(model: string) {
 }
 
 export async function createModel(data: ModelData) {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
 
     const headers = {
       'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export async function createModel(data: ModelData) {
 
 export async function deleteModel(id: number){
 
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem('access_token');
 
     const headers = {
       'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ export async function deleteModel(id: number){
 
 export async function updateModel(id: number, data: ModelData){
 
-   const token = localStorage.getItem('token');
+   const token = localStorage.getItem('access_token');
 
     const headers = {
      'Content-Type': 'application/json',

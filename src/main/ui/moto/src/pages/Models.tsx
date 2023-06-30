@@ -28,7 +28,7 @@ const Models = (props: ModelsProps) => {
   const [textValue, setTextValue] = useState('');
     const [searchValue, setSearchValue] = useState('');
     const [isClicked, setIsClicked] = useState(false);
-    const [filteredCountry, setFilteredCountry] = useState('');
+    const [filteredBodywork, setFilteredBodywork] = useState('');
     const [bgColor, setBgColor] = useState("white hover:bg-purple-100");
     const [shadowColor, setShadowColor] = useState("white hover:bg-purple-100");
     const [textColor, setTextColor] = useState("text-purple-600");
@@ -39,7 +39,7 @@ const Models = (props: ModelsProps) => {
         !isClicked ? setShadowColor("purple-800") : setShadowColor("white hover:bg-purple-100");
         !isClicked ? setTextColor("text-white") : setTextColor("text-purple-600");
         if(isClicked){
-          setFilteredCountry("");
+          setFilteredBodywork("");
         }
     }
 
@@ -48,8 +48,8 @@ const Models = (props: ModelsProps) => {
           setSearchValue(value.toLowerCase())
     }
 
-    const handleChangeCountry = ( value: string ) => {
-          setFilteredCountry(value);
+    const handleChangeBodywork = ( value: string ) => {
+          setFilteredBodywork(value);
     }
 
   useEffect(() => {
@@ -81,7 +81,7 @@ const Models = (props: ModelsProps) => {
             <div className="flex-grow">
                 <div className="mt-5 ml-5 flex justify-evenly md:ml-0 lg:justify-end">
                         <p onClick={handleClick} className="mt-6 ml-10 text-lg font-rowdies font-light hidden">Home</p>
-                        <Search value={textValue} onTextChange={handleTextChange} />
+                        <Search value={textValue} onTextChange={handleTextChange} input={"Search model.."}/>
                         <Button shadowColor={shadowColor} backgroundColor={bgColor} name={<svg className={`fill-current ${textColor}`}
                                         width="20"
                                         height="13"
@@ -98,11 +98,11 @@ const Models = (props: ModelsProps) => {
                 <div className="min-w-sm cursor-pointer ml-4">
                     <div className="mt-5 text-sm cursor-pointer overflow-hidden flex scroll-smooth ml-3 h-20">
                         {isClicked && (
-                            <Filter data={data} onChangeCountry={handleChangeCountry} />
+                            <Filter data={data} filter={"bodywork"} onChangeValue={handleChangeBodywork} />
                         )}
                     </div>
                 </div>
-                <ContentModel searchValue={searchValue} filteredCountry={filteredCountry} user={props.user} car={car} />
+                <ContentModel searchValue={searchValue} filteredBodywork={filteredBodywork} user={props.user} car={car} />
             </div>
             <Footer />
         </ModelDataProvider>

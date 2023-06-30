@@ -3,15 +3,31 @@ import './App.css';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import Models from './pages/Models';
-import CarCreateForm from './pages/CarCreateForm'
-import ModelCreateForm from './pages/ModelCreateForm'
-import DataProvider from './components/DataProvider'
+import CarCreateForm from './pages/CarCreateForm';
+import ModelCreateForm from './pages/ModelCreateForm';
+import DataProvider from './components/DataProvider';
+import { refreshAccessToken } from './services/AuthService';
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App(){
 
   const [user, setUser] = useState<Array<Object>>([]);
+
+  const refreshToken = localStorage.getItem("refresh_token");
+
+  useEffect(() => {
+      const intervalId = setInterval(async () => {
+      try {
+        if(refreshToken !== null ) {
+            await refreshAccessToken(refreshToken);
+        }
+      } catch (error) {
+      }
+    }, 30 * 60 * 1000);
+
+    return () => clearInterval(intervalId);
+    }, [refreshToken]);
 
   const handleUserInfo = (value: any) => {
     setUser(value);

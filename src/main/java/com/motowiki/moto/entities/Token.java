@@ -1,5 +1,6 @@
 package com.motowiki.moto.entities;
 
+import com.motowiki.moto.enumerations.TokenType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,6 +24,9 @@ public class Token {
     public boolean revoked;
 
     public boolean expired;
+
+    @Enumerated(EnumType.STRING)
+    public TokenType tokenType = TokenType.BEARER;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")

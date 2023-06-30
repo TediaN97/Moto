@@ -6,9 +6,10 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 interface SearchProps {
     value: string;
     onTextChange: (value: string) => void;
+    input: string
 }
 
-const Search: React.FC<SearchProps> = ({ value, onTextChange }) => {
+const Search: React.FC<SearchProps> = ({ value, onTextChange, input }) => {
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         onTextChange(event.target.value);
@@ -24,7 +25,7 @@ const Search: React.FC<SearchProps> = ({ value, onTextChange }) => {
                     className="peer h-full w-full outline-none text-sm text-purple-600 pr-2"
                     type="text"
                     id="search"
-                    placeholder="Search brand.."
+                    placeholder={input}
                     onChange={handleChange}
                     maxLength={15}
                 />

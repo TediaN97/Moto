@@ -60,7 +60,7 @@ const Home: React.FC<HomeProps> = ({data, user, onLogout }) => {
         <div className="flex-grow">
             <div className="mt-5 ml-5 flex justify-evenly md:ml-0 lg:justify-end">
                     <p onClick={handleClick} className="mt-6 ml-10 text-lg font-rowdies font-light hidden">Home</p>
-                    <Search value={textValue} onTextChange={handleTextChange} />
+                    <Search value={textValue} onTextChange={handleTextChange} input={"Search brand.."}/>
                     <Button shadowColor={shadowColor} backgroundColor={bgColor} name={<svg className={`fill-current ${textColor}`}
                                     width="20"
                                     height="13"
@@ -77,7 +77,7 @@ const Home: React.FC<HomeProps> = ({data, user, onLogout }) => {
             <div className="min-w-sm cursor-pointer ml-4">
                 <div className="mt-5 text-sm cursor-pointer overflow-hidden flex scroll-smooth ml-3 h-20">
                     {isClicked && (
-                        <Filter data={data} onChangeCountry={handleChangeCountry} />
+                        <Filter data={data} filter={"country"} onChangeValue={handleChangeCountry} />
                     )}
                 </div>
             </div>

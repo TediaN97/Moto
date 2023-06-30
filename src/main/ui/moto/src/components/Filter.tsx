@@ -1,12 +1,22 @@
-import React, { MouseEvent, useState, TouchEvent, useRef }from 'react';
+import React, { MouseEvent, useState, TouchEvent, useRef, useContext, useEffect }from 'react';
 import FilteredButton from './FilteredButton';
+import { ModelDataContext } from './ModelDataProvider';
+import { useLocation } from 'react-router-dom';
 
 interface FilterProps {
     data: any;
-    onChangeCountry: (value: string) => void;
+    onChangeValue: (value: string) => void;
+    filter: string;
 }
 
-const Filter: React.FC<FilterProps> = ({ data, onChangeCountry }) => {
+const Filter: React.FC<FilterProps> = ({ data, onChangeValue, filter }) => {
+
+  const models = useContext(ModelDataContext);
+
+  const location = useLocation();
+  if(location.pathname !== '/'){
+    data = models;
+  }
 
   let counter = 1;
 
@@ -20,7 +30,7 @@ const Filter: React.FC<FilterProps> = ({ data, onChangeCountry }) => {
   const [name, setName ] = useState('');
   const [clickedTwice, setClickedTwice] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
-  const [carId, setCarId] = useState<number | null>(null);
+  const [itemId, setItemId] = useState<number | null>(null);
 
   //global variables
   let value: number = 0;
@@ -57,30 +67,30 @@ const Filter: React.FC<FilterProps> = ({ data, onChangeCountry }) => {
 
 
   const handleClick = (event: MouseEvent<HTMLButtonElement>, key:number) => {
-       setCarId(key);
+       setItemId(key);
        if(name === (event.target as HTMLButtonElement).name){
           if(!clickedTwice){
-            setCarId(null);
-            onChangeCountry("");
+            setItemId(null);
+            onChangeValue("");
             setClickedTwice(true);
           } else {
-                onChangeCountry((event.target as HTMLButtonElement).name);
+                onChangeValue((event.target as HTMLButtonElement).name);
                 setClickedTwice(false);
             }
         }else {
-            onChangeCountry((event.target as HTMLButtonElement).name);
+            onChangeValue((event.target as HTMLButtonElement).name);
             setName((event.target as HTMLButtonElement).name);
             setClickedTwice(false);
         }
   }
 
-  const unique = [...(new Set(data.map((car: any) => car.country )) as any)];
+  const unique = [...(new Set(data.map((item: any) => item[filter] )) as any)];
 
   return (
         <div ref={carouselRef} className="w-full text-sm cursor-pointer overflow-hidden flex scroll-smooth items-center" onTouchMove={draggingTouch} onTouchStart={dragTouchStart} onTouchEnd={dragStop}>
-            {unique.filter((car:any) => car.length ).map((car: any, index: number) => {
+            {unique.filter((item:any) => item.length ).map((item: any, index: number) => {
                     return (
-                        <FilteredButton key={index} onClick={(event) => handleClick(event, index)} isActive={carId === index} name={car} />
+                        <FilteredButton key={index} onClick={(event) => handleClick(event, index)} isActive={itemId === index} name={item} />
                     )
             })}
         </div>

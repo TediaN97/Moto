@@ -8,16 +8,17 @@ import Image from './Image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { ModelDataContext } from './ModelDataProvider';
+import GridModel from './GridModel';
 
 
 interface ContentModelProps {
     searchValue: string;
-    filteredCountry: string;
+    filteredBodywork: string;
     user: any;
     car: any
 }
 
-const ContentModel: React.FC<ContentModelProps> = ({ searchValue, filteredCountry, user, car }) => {
+const ContentModel: React.FC<ContentModelProps> = ({ searchValue, filteredBodywork, user, car }) => {
 
   const models = useContext(ModelDataContext);
 
@@ -51,13 +52,7 @@ const ContentModel: React.FC<ContentModelProps> = ({ searchValue, filteredCountr
        </div>
        {models.length !== 0 && (
             <div className="min-w-sm cursor-pointer">
-               {models.map((model) => {
-                    console.log(model);
-                       return (
-                       <div key={model?.id}>
-
-                       </div>
-                     )})}
+                <GridModel data={models} filteredBodywork={filteredBodywork} searchValue={searchValue} />
             </div>
         )}
     </div>

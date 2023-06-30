@@ -26,7 +26,7 @@ const Grid = (props: GridProps) => {
                               <Image brand={car.brand} imageData={car.logo} isClickedEdit={props.isClickedEdit} />
                               <Update car={car} />
                               <Modal id={car.id} title={`Delete ${car.brand}`} content={`Are you sure you want to remove ${car.brand} brand ?`}/>
-                </div>
+                          </div>
                    )
              )}
            </div>
