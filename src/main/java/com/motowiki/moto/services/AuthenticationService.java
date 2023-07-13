@@ -1,7 +1,6 @@
 package com.motowiki.moto.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.motowiki.moto.entities.Car;
 import com.motowiki.moto.entities.Token;
 import com.motowiki.moto.entities.User;
 import com.motowiki.moto.enumerations.TokenType;
@@ -12,7 +11,6 @@ import com.motowiki.moto.repositories.token.TokenRepository;
 import com.motowiki.moto.repositories.user.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -25,7 +23,6 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-@RequiredArgsConstructor
 public class AuthenticationService {
 
     private final UserRepository userRepository;
@@ -34,6 +31,13 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final TokenRepository tokenRepository;
 
+    public AuthenticationService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService, AuthenticationManager authenticationManager, TokenRepository tokenRepository) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
+        this.authenticationManager = authenticationManager;
+        this.tokenRepository = tokenRepository;
+    }
 
     public AuthenticationResponse register(RegisterRequest request) throws Exception {
 

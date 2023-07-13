@@ -3,10 +3,6 @@ package com.motowiki.moto.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import org.jetbrains.annotations.NotNull;
-
-import java.io.File;
-
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
@@ -27,4 +23,11 @@ public class Car extends BaseEntity{
     private Integer start_from;
 
     private byte[] logo;
+
+    public Car(String brand, String country, int start_from) {
+        this.brand = brand;
+        this.country = country;
+        this.start_from = start_from;
+    }
+
 }

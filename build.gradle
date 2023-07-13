@@ -15,6 +15,7 @@ repositories {
 
 dependencies {
 	implementation 'com.github.java-json-tools:json-patch:1.13'
+	testImplementation 'junit:junit:4.13.1'
 	compileOnly 'org.projectlombok:lombok:1.18.26'
 	annotationProcessor 'org.projectlombok:lombok:1.18.26'
 
