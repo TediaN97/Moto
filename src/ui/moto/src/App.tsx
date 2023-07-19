@@ -42,8 +42,8 @@ function App(){
         <Routes>
             <Route path="/" element={<DataProvider user={user} onLogout={handleLogout} />} />
             <Route path="/car/carForm" element={<CarCreateForm user={user} onLogout={handleLogout} />} />
-            <Route path="/signIn" element={<SignIn user={user} onLogout={handleLogout} />} />
-            <Route path="/signUp" element={<SignUp loggedUserInfo={handleUserInfo} onLogout={handleLogout} />} />
+            <Route path="/signUp" element={<SignUp user={user} onLogout={handleLogout} />} />
+            <Route path="/signIn" element={<SignIn loggedUserInfo={handleUserInfo} onLogout={handleLogout} />} />
             <Route path="/car/models/*" element={<Models user={user} onLogout={handleLogout} />} />
             <Route path="/car/models/modelCreateForm" element={<ModelCreateForm user={user} onLogout={handleLogout} />} />
         </Routes>

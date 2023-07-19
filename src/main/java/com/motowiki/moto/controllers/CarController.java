@@ -1,12 +1,10 @@
 package com.motowiki.moto.controllers;
 
-import com.github.fge.jsonpatch.JsonPatch;
 import com.motowiki.moto.models.CarModel;
 import com.motowiki.moto.entities.Car;
 import com.motowiki.moto.services.CarService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,18 +44,11 @@ public class CarController {
     public CompletableFuture<Car> updateOneProduct(@PathVariable("id") long id, @RequestBody CarModel car) {
         return CompletableFuture.supplyAsync(() -> {
             try {
-                service.updateOne(id, car);
+                return service.updateOne(id, car);
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-            return service.findById(id);
         });
-    }
-
-    @PatchMapping(value = "/patch/{id}", consumes = "application/json")
-    @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Car> patchOneProduct(@PathVariable("id") int id, @RequestBody JsonPatch patch) {
-        return new ResponseEntity<>(service.patchOne(id, patch),HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")

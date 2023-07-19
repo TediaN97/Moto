@@ -24,10 +24,4 @@ public class Car extends BaseEntity{
 
     private byte[] logo;
 
-    public Car(String brand, String country, int start_from) {
-        this.brand = brand;
-        this.country = country;
-        this.start_from = start_from;
-    }
-
 }

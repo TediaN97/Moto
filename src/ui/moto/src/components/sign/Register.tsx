@@ -43,7 +43,7 @@ const Register = () => {
                 const errorResponse = response as ErrorResponse;
                 setError(true);
             }else {
-                navigate('/signUp');
+                navigate('/signIn');
             }
         } catch(error) {
         }
@@ -83,7 +83,7 @@ const Register = () => {
             <Input name="Email" icon={<FontAwesomeIcon icon={faEnvelope} />} placeholder="Email..." width="w-full" value={emailValue} onTextChange={handleEmailChange} type="text"/>
             <Input name="Password" icon={<FontAwesomeIcon icon={faLock} />} placeholder="Password..." width="w-full" value={passwordValue} onTextChange={handlePasswordChange} type="password"/>
             <div className="mt-10 flex justify-center items-center">
-                <Button name="Sign In" width="w-40" backgroundColor={"bg-purple-600"} hoverBackgroundColor={"hover:bg-purple-900"} onClick={handleRegisterClick}/>
+                <Button name="Sign Up" width="w-40" backgroundColor={"bg-purple-600"} hoverBackgroundColor={"hover:bg-purple-900"} onClick={handleRegisterClick}/>
             </div>
        </div>
     </div>

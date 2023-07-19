@@ -93,8 +93,8 @@ const NavBar = (props: NavBarProps) => {
             </ul>
             {user.length === 0 && (
                 <>
-                    <a className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-purple-100 text-sm text-purple-600 shadow-lg font-bold  rounded-xl transition duration-200 cursor-pointer" onClick={() => handleClick('/signIn')}>Sign In</a>
-                    <a className="hidden lg:inline-block py-2 px-6 bg-purple-600 hover:bg-purple-900 text-sm text-white font-bold rounded-xl shadow-lg transition duration-200 cursor-pointer" onClick={() => handleClick('/signUp')}>Sign up</a>
+                    <a className="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-purple-100 text-sm text-purple-600 shadow-lg font-bold  rounded-xl transition duration-200 cursor-pointer" onClick={() => handleClick('/signUp')}>Sign Up</a>
+                    <a className="hidden lg:inline-block py-2 px-6 bg-purple-600 hover:bg-purple-900 text-sm text-white font-bold rounded-xl shadow-lg transition duration-200 cursor-pointer" onClick={() => handleClick('/signIn')}>Sign In</a>
                 </>
             )
             }
@@ -118,8 +118,8 @@ const NavBar = (props: NavBarProps) => {
                 <div>
                     {user.length === 0 && (
                         <div className="pt-6">
-                            <a className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-white hover:bg-purple-200 rounded-xl transition duration-200 cursor-pointer" onClick={() => handleClick('/signIn')} >Sign in</a>
-                            <a className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-purple-600 hover:bg-purple-900  rounded-xl shadow-lg transition duration-200 cursor-pointer" onClick={() => handleClick('/signUp')}>Sign Up</a>
+                            <a className="block px-4 py-3 mb-3 leading-loose text-xs text-center font-semibold leading-none bg-white hover:bg-purple-200 rounded-xl transition duration-200 cursor-pointer" onClick={() => handleClick('/signUp')} >Sign Up</a>
+                            <a className="block px-4 py-3 mb-2 leading-loose text-xs text-center text-white font-semibold bg-purple-600 hover:bg-purple-900  rounded-xl shadow-lg transition duration-200 cursor-pointer" onClick={() => handleClick('/signIn')}>Sign In</a>
                         </div>
                     )}
                     {user.length !== 0 && (

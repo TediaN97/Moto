@@ -26,14 +26,15 @@ public class CarService {
     }
 
     public Car create(CarModel car) throws Exception {
-        List<Car> listOfCars = findAll();
-        for(Car checkCar : listOfCars) {
-            if (Objects.equals(car.getBrand(), checkCar.getBrand())) {
-                throw new Exception("Car with this brand is already in a table");
-            }
+        Car existsBrand = this.repository.findByBrand(car.getBrand());
+        if (existsBrand != null) {
+            throw new Exception("Car with this brand is already in a table");
         }
 
-        byte[] logoBytes = Base64.getDecoder().decode(car.getLogo());
+        byte[] logoBytes = null;
+        if (car.getLogo() != null && !car.getLogo().isEmpty()) {
+            logoBytes = Base64.getDecoder().decode(car.getLogo());
+        }
 
         Car carToSave = Car.builder()
                 .brand(car.getBrand())
@@ -57,28 +58,26 @@ public class CarService {
         return repository.findAll().stream().sorted(Comparator.comparing(Car::getId)).toList();
     }
 
-    public void updateOne(long id, CarModel car) throws Exception {
+    public Car updateOne(long id, CarModel car) throws Exception {
         if (repository.findById(id).isEmpty()) throw new EntityNotFoundException();
-        List<Car> listOfCars = findAll();
-        for(Car checkCar : listOfCars){
-            System.out.println("checkCar" + checkCar);
-            System.out.println("id" + id);
-            if(Objects.equals(car.getBrand(), checkCar.getBrand()) && checkCar.getId() != id){
-                throw new Exception("Car with this brand is already in a table");
-            }
+        Car existsBrand = this.repository.findByBrand(car.getBrand());
+        if (existsBrand != null) {
+            throw new Exception("Car with this brand is already in a table");
         }
 
-        byte[] logoBytes = Base64.getDecoder().decode(car.getLogo());
+        byte[] logoBytes = null;
+        if (car.getLogo() != null && !car.getLogo().isEmpty()) {
+            logoBytes = Base64.getDecoder().decode(car.getLogo());
+        }
 
-        repository.updateById(car.getBrand(), car.getCountry(), car.getStart_from(), logoBytes, id);
+        Car carById = repository.findById(id).get();
+        carById.setBrand(car.getBrand());
+        carById.setCountry(car.getCountry());
+        carById.setStart_from(car.getStart_from());
+        carById.setLogo(logoBytes);
+
+        return repository.save(carById);
     }
-
-    public Car patchOne(long id, JsonPatch patch) {
-        Car car = repository.findById(id).orElseThrow(EntityNotFoundException::new);
-        Car carPatched = applyPatchToProduct(patch, car);
-        return repository.save(carPatched);
-    }
-
     public void deleteById(long id) {
         repository.deleteById(id);
     }
@@ -86,16 +85,8 @@ public class CarService {
 
     public void deleteAll() {
         repository.deleteAll();
-        repositoryImpl.resetPrimaryKey();
-    }
-
-    private Car applyPatchToProduct(JsonPatch patch, Car car) {
-        try {
-            var objectMapper = new ObjectMapper();
-            JsonNode patched = patch.apply(objectMapper.convertValue(car, JsonNode.class));
-            return objectMapper.treeToValue(patched, Car.class);
-        } catch (JsonPatchException | JsonProcessingException e) {
-            throw new RuntimeException(e);
+        if(repositoryImpl != null) {
+            repositoryImpl.resetPrimaryKey();
         }
     }
 }

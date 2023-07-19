@@ -59,10 +59,10 @@ const Login = (props: LoginProps) => {
                 <a href="#">Forgot your password?</a>
             </div>
             <div className="mt-10 flex justify-center items-center">
-                <Button name="Sign Up" width="w-40" backgroundColor={"bg-purple-600"} hoverBackgroundColor={"hover:bg-purple-900"} onClick={handleLoginClick}/>
+                <Button name="Sign In" width="w-40" backgroundColor={"bg-purple-600"} hoverBackgroundColor={"hover:bg-purple-900"} onClick={handleLoginClick}/>
             </div>
             <div className="text-center mr-3 text-purple-600 mt-2">
-                No account? <a className="hover:underline hover:text-purple-900 cursor-pointer" onClick={() => navigate('/signIn')}>Create one</a>
+                No account? <a className="hover:underline hover:text-purple-900 cursor-pointer" onClick={() => navigate('/signUp')}>Create one</a>
             </div>
        </div>
     </div>
