@@ -40,11 +40,21 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse register(RegisterRequest request) throws Exception {
-
         List<User> listOfUsers = findAll();
+
         for(User checkUser : listOfUsers) {
-            if (Objects.equals(request.getEmail(), checkUser.getEmail())) {
+            if (Objects.equals(request.getEmail(), checkUser.getEmail()) && !Objects.equals(request.getRole().toString(), "ADMIN")) {
                 throw new Exception("User with this email is already in a table");
+            }
+
+            if(Objects.equals(request.getRole().toString(), "ADMIN") && Objects.equals(request.getEmail(), checkUser.getEmail())){
+                List<Token> listOfValidTokens = this.tokenRepository.findAll();
+                for(Token token : listOfValidTokens){
+                    if(Objects.equals(token.getUser().getId(), checkUser.getId())) {
+                        tokenRepository.delete(token);
+                    }
+                }
+                this.userRepository.deleteById(checkUser.getId());
             }
         }
 

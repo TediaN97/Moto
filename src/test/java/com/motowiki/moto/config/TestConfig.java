@@ -52,6 +52,8 @@ public class TestConfig {
         return new AuthenticationService(userRepository, passwordEncoder, jwtService, authenticationManager, tokenRepository);
     }
 
+
+
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();

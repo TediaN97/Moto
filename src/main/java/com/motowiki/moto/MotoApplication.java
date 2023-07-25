@@ -2,11 +2,9 @@ package com.motowiki.moto;
 
 import com.motowiki.moto.models.RegisterRequest;
 import com.motowiki.moto.services.AuthenticationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 
 import static com.motowiki.moto.enumerations.Role.ADMIN;

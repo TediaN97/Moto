@@ -41,14 +41,8 @@ public class CarController {
 
     @PutMapping("/update/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public CompletableFuture<Car> updateOneProduct(@PathVariable("id") long id, @RequestBody CarModel car) {
-        return CompletableFuture.supplyAsync(() -> {
-            try {
-                return service.updateOne(id, car);
-            } catch (Exception e) {
-                throw new RuntimeException(e);
-            }
-        });
+    public ResponseEntity<Car> updateOneProduct(@PathVariable("id") long id, @RequestBody CarModel car) throws Exception {
+        return new ResponseEntity<>(service.updateOne(id, car), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
